@@ -1,0 +1,29 @@
+<!-- src/app/components/incidents/incidents.component.html -->
+<div class="incidents-container">
+  <h1>Incidents</h1>
+  <mat-card class="search-card">
+    <div class="search-container">
+      <mat-icon class="search-icon"></mat-icon>
+      <input matInput placeholder="Search for incidents..." />
+    </div>
+  </mat-card>
+
+  <div class="incidents-list">
+    <mat-card class="incident-card" *ngFor="let incident of incidents">
+      <div class="incident-info">
+        <!-- Reemplazamos el mat-icon con la imagen proporcionada -->
+        <img
+          src="https://github.com/user-attachments/assets/3d710fe1-ae8d-4760-b80f-d217acd4c24c"
+          alt="Incident Icon"
+          class="incident-icon"
+        />
+
+        <div>
+          <h3>{{ incident.incidentPlace }}</h3>
+          <p class="description">Description: {{ incident.description }}</p>
+        </div>
+        <span class="date">{{ incident.date }}</span>
+      </div>
+    </mat-card>
+  </div>
+</div>
