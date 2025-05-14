@@ -24,7 +24,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px solid #ffa726;
+  border: 2px solid #88C01B;
   border-radius: 8px;
   padding: 8px;
 }
@@ -37,7 +37,7 @@
 }
 
 .search-button {
-  background-color: #ffa726;
+  background-color: #88C01B;
   color: #fff;
   border-radius: 50%;
   width: 40px;
@@ -49,7 +49,7 @@
 }
 
 .search-button:hover {
-  background-color: #fb8c00;
+  background-color: #699811;
 }
 
 .title {

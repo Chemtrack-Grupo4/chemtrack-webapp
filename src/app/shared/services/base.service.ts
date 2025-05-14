@@ -12,7 +12,7 @@ import {Sensor} from '../../Management/monitoring/model/monitoring';
 })
 
 export class BaseService {
-  private apiUrl = 'https://safe-flow-api.sfo1.zeabur.app/api/safe-flow/v1';
+  private apiUrl = 'http://localhost:8080/api/safe-flow/v1';
 
   constructor(private http: HttpClient) {}
 
