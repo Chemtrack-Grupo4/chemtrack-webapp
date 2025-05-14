@@ -1,0 +1,22 @@
+<!-- monitoring.component.html -->
+<div class="monitoring-container">
+  <!-- Imagen centrada en la parte superior -->
+  <div class="header-image">
+    <img src="https://github.com/user-attachments/assets/1a942d2c-b298-4ac9-b83d-a657b3f9a3b5" alt="Monitoring Icon" />
+  </div>
+
+  <h1>Sensors Monitoring</h1>
+
+  <div *ngIf="sensors.length === 0" class="no-sensors">
+    <p>No sensors available</p>
+  </div>
+
+  <div class="sensors-list" *ngIf="sensors.length > 0">
+    <mat-card class="sensor-card" *ngFor="let sensor of sensors">
+      <h3>Sensor ID: {{ sensor.id }}</h3>
+      <p>Gas Value: {{ sensor.gasValue }}</p>
+      <p>Temperature: {{ sensor.temp }}°C</p>
+      <p>Status: <span [ngClass]="sensor.safe ? 'status-safe' : 'status-unsafe'">{{ sensor.safe ? 'Safe' : 'Unsafe' }}</span></p>
+    </mat-card>
+  </div>
+</div>
