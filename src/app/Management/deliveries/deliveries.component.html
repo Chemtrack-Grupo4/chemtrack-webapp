@@ -1,0 +1,36 @@
+<!-- deliveries.component.html -->
+<div class="deliveries-container">
+  <div class="header">
+    <h1>Delivers</h1>
+    <div class="search-bar">
+      <input type="text" placeholder="Search" />
+    </div>
+  </div>
+
+  <h2 class="sub-title">Delivery Trips</h2>
+
+  <div class="deliveries-list">
+    <div class="delivery-card" *ngFor="let delivery of deliveries">
+      <div class="card-content">
+        <div>
+          <h3 class="destination">{{ delivery.destination }}</h3>
+          <p class="description">{{ delivery.packageDescription }}</p>
+        </div>
+        <img
+          src="https://github.com/user-attachments/assets/63ca6961-f592-49cd-a7d1-0a646b71ae12"
+          alt="Delivery Icon"
+          class="delivery-icon"
+        />
+      </div>
+      <div class="button-group">
+        <button class="decline-button" (click)="onDecline(delivery)">Delete</button>
+        <button class="accept-button" (click)="onAccept(delivery)">Update</button>
+      </div>
+    </div>
+  </div>
+
+  <p class="no-more-trips" *ngIf="deliveries.length === 0">No hay más viajes por mostrar</p>
+
+  <!-- Botón flotante "Start Monitoring" -->
+  <button class="floating-button" (click)="onStartMonitoring()">Start Monitoring</button>
+</div>
