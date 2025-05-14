@@ -55,7 +55,7 @@
 }
 
 .delivery-card {
-  background-color: #ffc107;
+  background-color: #88C01B;
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
@@ -132,7 +132,7 @@
   bottom: 70px; /* Incrementamos el espacio para que quede sobre el footer */
   right: 20px;
   padding: 12px 24px;
-  background-color: #ffa726; /* Color naranja */
+  background-color: #93cc30;
   color: white;
   font-size: 1em;
   font-weight: bold;
@@ -144,6 +144,6 @@
 }
 
 .floating-button:hover {
-  background-color: #fb8c00;
+  background-color: #659a0f;
   transform: scale(1.05);
 }
