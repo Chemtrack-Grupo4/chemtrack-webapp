@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 /* styles.css */
 .mat-dialog-container {
   display: flex;
@@ -27,7 +26,7 @@ html, body {
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px solid #88C01B;
+  border: 2px solid #ffa726;
   border-radius: 8px;
   padding: 8px;
   width: 100%;
