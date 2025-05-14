@@ -1,0 +1,51 @@
+/* toolbar.component.css */
+
+.toolbar {
+  width: 100%;
+  background-color: #88C01B; /* Color naranja */
+  color: white;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.app-logo {
+  width: 30px;            /* Tamaño del logo */
+  height: 30px;           /* Tamaño del logo */
+  margin-right: 10px;     /* Espacio entre el logo y el texto */
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1em;
+  margin-right: 20px;
+}
+
+.active-link {
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 600px) {
+  .toolbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  nav a {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+}
