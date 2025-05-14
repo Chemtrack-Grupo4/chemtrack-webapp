@@ -1,0 +1,68 @@
+/* monitoring.component.css */
+
+.monitoring-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.header-image {
+  margin-bottom: 20px;
+}
+
+.header-image img {
+  width: 100px; /* Ajusta el tamaño de la imagen */
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 1.8em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.sensors-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.sensor-card {
+  width: 250px;
+  padding: 16px;
+  border-radius: 8px;
+  background-color: #88C01B; /* Fondo naranja */
+  color: #333;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.sensor-card:hover {
+  transform: translateY(-5px); /* Efecto de elevación */
+}
+
+.status-safe {
+  color: #00796b;
+  font-weight: bold;
+}
+
+.status-unsafe {
+  color: #d32f2f;
+  font-weight: bold;
+}
+
+.no-sensors {
+  text-align: center;
+  color: #777;
+  font-size: 1em;
+}
