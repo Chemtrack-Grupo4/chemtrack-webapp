@@ -1,4 +1,4 @@
-export class Servicios {
+export class Services {
 
   id: number;
   nameService: string;

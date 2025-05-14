@@ -1,12 +1,9 @@
-<!-- src/app/Management/services/services.component.html -->
 <div class="services-container">
-  <!-- Cabecera con buscador -->
   <div class="header">
     <h1>Welcome</h1>
-
     <mat-card class="search-card">
       <div class="search-container">
-        <input matInput placeholder="Search for a service…" />
+        <input matInput placeholder="Search for a service..." />
         <button mat-icon-button class="search-button">
           <mat-icon>search</mat-icon>
         </button>
@@ -15,56 +12,46 @@
   </div>
 
   <!-- Título centrado -->
-  <h2 class="title">Services On&nbsp;Going</h2>
+  <h2 class="title">Services On Going</h2>
 
-  <!-- Lista reactiva -->
   <div class="services-list">
-    <mat-card
-      class="service-card"
-      *ngFor="let service of services$ | async; trackBy: trackById"
-    >
-      <!-- Imagen principal -->
-      <img
-        class="placeholder-image"
-        src="https://github.com/user-attachments/assets/55d61ddc-fdb7-45a4-bcc2-70b49d96120c"
-        alt="Service Placeholder"
-      />
+    <mat-card class="service-card" *ngFor="let service of services">
+      <!-- Imagen de placeholder en la parte superior de la tarjeta -->
+      <img src="https://github.com/user-attachments/assets/55d61ddc-fdb7-45a4-bcc2-70b49d96120c" alt="Service Placeholder" class="placeholder-image" />
 
-      <!-- Encabezado -->
       <div class="service-header">
         <h3>{{ service.nameService }}</h3>
 
-        <!-- Icono de estado -->
+        <!-- Mostrar imagen de estado según el valor de 'incidents' -->
         <img
-          *ngIf="service.incidents === 'No One'; else warn"
+          *ngIf="service.incidents === 'No One'"
           src="https://github.com/user-attachments/assets/77246d52-ffaa-4ea3-a418-f240c3a6ca7b"
           alt="Safe"
           class="status-icon"
         />
-        <ng-template #warn>
-          <img
-            src="https://github.com/user-attachments/assets/c11b2525-4dca-407f-b60b-f1caeb640971"
-            alt="Warning"
-            class="status-icon"
-          />
-        </ng-template>
+        <img
+          *ngIf="service.incidents !== 'No One'"
+          src="https://github.com/user-attachments/assets/c11b2525-4dca-407f-b60b-f1caeb640971"
+          alt="Warning"
+          class="status-icon"
+        />
       </div>
 
-      <!-- Cuerpo -->
       <div class="service-body">
         <p>{{ service.description }}</p>
         <p
           class="incident-info"
           [ngClass]="{
-            'safe-text':    service.incidents === 'No One',
+            'safe-text': service.incidents === 'No One',
             'warning-text': service.incidents === 'Gas Leak',
-            'alert-text':   service.incidents === 'High Temperature'
+            'alert-text': service.incidents === 'High Temperature'
           }"
         >
-          Incidents:
-          <span>{{ service.incidents }}</span>
+          Incidents: <span>{{ service.incidents }}</span>
         </p>
       </div>
     </mat-card>
   </div>
+
+  <!-- Botón flotante -->
 </div>

@@ -3,10 +3,17 @@ import { Component, OnInit } from '@angular/core';
 import {Sensor} from '../model/monitoring';
 import {BaseService} from '../../../shared/services/base.service';
 import {BaseSensorService} from '../../../shared/services/base.sensor.service';
+import {MatCard} from '@angular/material/card';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'app-monitoring',
   templateUrl: './monitoring.component.html',
+  standalone: true,
+  imports: [
+    MatCard,
+    NgClass
+  ],
   styleUrls: ['./monitoring.component.css']
 })
 export class MonitoringComponent implements OnInit {
