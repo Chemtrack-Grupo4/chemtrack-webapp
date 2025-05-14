@@ -12,5 +12,5 @@ import { FooterComponent } from './shared/footer/footer/footer.component';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  title = 'safe-flow-webapp';
+  title = 'chemtrack-webapp';
 }

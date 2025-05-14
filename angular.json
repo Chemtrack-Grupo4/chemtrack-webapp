@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "safe-flow-webapp": {
+    "chemtrack-webapp": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -23,7 +23,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/safe-flow-webapp",
+            "outputPath": "dist/chemtrack-webapp",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "safe-flow-webapp:build:production"
+              "buildTarget": "chemtrack-webapp:build:production"
             },
             "development": {
-              "buildTarget": "safe-flow-webapp:build:development"
+              "buildTarget": "chemtrack-webapp:build:development"
             }
           },
           "defaultConfiguration": "development"
