@@ -1,7 +1,34 @@
+// base.service.spec.ts
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
 import { BaseService } from './base.service';
 
 describe('BaseService', () => {
-  it('should create an instance', () => {
-    expect(new BaseService()).toBeTruthy();
+  let service: BaseService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],   // 👈 módulo de prueba para HttpClient
+      providers: [BaseService],
+    });
+
+    service   = TestBed.inject(BaseService);
+    httpMock  = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => httpMock.verify());
+
+  it('should be created', () => {
+    expect(service).toBeTruthy();
+  });
+
+  it('getServices() debe hacer GET a /services', () => {
+    service.getServices().subscribe();
+
+    const req = httpMock.expectOne('https://safe-flow-api.sfo1.zeabur.app/api/safe-flow/v1/services');
+    expect(req.request.method).toBe('GET');
+    req.flush([]);        // respuesta simulada
   });
 });

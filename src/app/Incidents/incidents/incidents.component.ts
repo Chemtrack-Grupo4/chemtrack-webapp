@@ -1,13 +1,22 @@
-// src/app/components/incidents/incidents.component.ts
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import { CommonModule }      from '@angular/common';
+import { MatCardModule }     from '@angular/material/card';
+import { MatIconModule }     from '@angular/material/icon';
+import { MatInputModule }    from '@angular/material/input';
 import {Incident} from '../model/incident';
 import {BaseService} from '../../shared/services/base.service';
 
-
 @Component({
   selector: 'app-incidents',
+  standalone: true,
+  imports: [
+    CommonModule,        //  ← soluciona NG8103
+    MatCardModule,       //  ← <mat-card>
+    MatIconModule,       //  ← <mat-icon>
+    MatInputModule,      //  ← matInput
+  ],
   templateUrl: './incidents.component.html',
-  styleUrls: ['./incidents.component.css']
+  styleUrls: ['./incidents.component.css'],
 })
 export class IncidentsComponent implements OnInit {
   incidents: Incident[] = [];
