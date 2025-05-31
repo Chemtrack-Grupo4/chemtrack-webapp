@@ -2,13 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {User} from '../model/users';
 import {BaseUserService} from '../../shared/services/base.user.service';
 import {MatCard} from '@angular/material/card';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-components',
   templateUrl: './components.component.html',
   standalone: true,
   imports: [
-    MatCard
+    MatCard,
+    NgIf,
+    NgForOf
   ],
   styleUrl: './components.component.css'
 })

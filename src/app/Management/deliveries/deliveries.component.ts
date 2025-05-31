@@ -2,10 +2,16 @@ import {Component, OnInit} from '@angular/core';
 import {Delivery} from './model/delivery';
 import {BaseService} from '../../shared/services/base.service';
 import {Router} from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-deliveries',
   templateUrl: './deliveries.component.html',
+  standalone: true,
+  imports: [
+    NgForOf,
+    NgIf
+  ],
   styleUrl: './deliveries.component.css'
 })
 export class DeliveriesComponent implements OnInit {
