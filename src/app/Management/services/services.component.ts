@@ -5,6 +5,8 @@ import {BaseService} from '../../shared/services/base.service';
 import {MatCard} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
+import {MatIconButton} from '@angular/material/button';
+import {MatInput} from '@angular/material/input';
 
 @Component({
   selector: 'app-services',
@@ -15,7 +17,9 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
     MatIcon,
     NgClass,
     NgForOf,
-    NgIf
+    NgIf,
+    MatIconButton,
+    MatInput
   ],
   styleUrl: './services.component.css'
 })
