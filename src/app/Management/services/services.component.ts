@@ -3,7 +3,6 @@ import { MatDialog } from '@angular/material/dialog';
 import {Services} from './model/services';
 import {BaseService} from '../../shared/services/base.service';
 import {MatCard} from '@angular/material/card';
-import {MatIcon} from '@angular/material/icon';
 import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
@@ -14,7 +13,6 @@ import {MatInput} from '@angular/material/input';
   standalone: true,
   imports: [
     MatCard,
-    MatIcon,
     NgClass,
     NgForOf,
     NgIf,

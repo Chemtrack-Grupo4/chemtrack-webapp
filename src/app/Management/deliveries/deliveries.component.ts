@@ -3,6 +3,7 @@ import {Delivery} from './model/delivery';
 import {BaseService} from '../../shared/services/base.service';
 import {Router} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
+import {MatIconButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-deliveries',
@@ -10,7 +11,8 @@ import {NgForOf, NgIf} from '@angular/common';
   standalone: true,
   imports: [
     NgForOf,
-    NgIf
+    NgIf,
+    MatIconButton
   ],
   styleUrl: './deliveries.component.css'
 })

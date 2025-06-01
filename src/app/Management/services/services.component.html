@@ -1,18 +1,15 @@
 <div class="services-container">
   <div class="header">
-    <h1>Welcome</h1>
+    <h1>Services</h1>
     <mat-card class="search-card">
       <div class="search-container">
         <input matInput placeholder="Search for a service..." />
         <button mat-icon-button class="search-button">
-          <mat-icon>search</mat-icon>
+          <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
         </button>
       </div>
     </mat-card>
   </div>
-
-  <!-- Título centrado -->
-  <h2 class="title">Services On Going</h2>
 
   <div class="services-list">
     <mat-card class="service-card" *ngFor="let service of services">
@@ -54,4 +51,5 @@
   </div>
 
   <!-- Botón flotante -->
+  <button class="add-service-button">Add new service</button>
 </div>
