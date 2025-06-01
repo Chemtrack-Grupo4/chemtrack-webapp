@@ -3,7 +3,8 @@
     <h1>Services</h1>
     <mat-card class="search-card">
       <div class="search-container">
-        <input matInput placeholder="Search for a service..." />
+        <input matInput placeholder="Search for a service..." [(ngModel)]="searchText"
+               (input)="filterServices()" />
         <button mat-icon-button class="search-button">
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
         </button>
@@ -12,7 +13,7 @@
   </div>
 
   <div class="services-list">
-    <mat-card class="service-card" *ngFor="let service of services">
+    <mat-card class="service-card" *ngFor="let service of filteredServices">
       <!-- Imagen de placeholder en la parte superior de la tarjeta -->
       <img src="https://github.com/user-attachments/assets/55d61ddc-fdb7-45a4-bcc2-70b49d96120c" alt="Service Placeholder" class="placeholder-image" />
 

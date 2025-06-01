@@ -4,7 +4,8 @@
     <div class="header">
       <h1>Delivers</h1>
       <div class="search-bar">
-        <input type="text" placeholder="Search" />
+        <input type="text" placeholder="Search" [(ngModel)]="searchText"
+               (input)="filterDeliveries()" />
         <button mat-icon-button class="search-button">
           <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
         </button>
@@ -14,7 +15,7 @@
     <h2 class="sub-title">Delivery Trips</h2>
 
     <div class="deliveries-list">
-      <div class="delivery-card" *ngFor="let delivery of deliveries">
+      <div class="delivery-card" *ngFor="let delivery of filteredDeliveries">
         <div class="card-content">
           <div>
             <h3 class="destination">{{ delivery.destination }}</h3>

@@ -4,6 +4,9 @@ import {BaseService} from '../../shared/services/base.service';
 import {Router} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
+import {MatInput} from '@angular/material/input';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Incident} from '../../Incidents/model/incident';
 
 @Component({
   selector: 'app-deliveries',
@@ -12,12 +15,17 @@ import {MatIconButton} from '@angular/material/button';
   imports: [
     NgForOf,
     NgIf,
-    MatIconButton
+    MatIconButton,
+    MatInput,
+    ReactiveFormsModule,
+    FormsModule
   ],
   styleUrl: './deliveries.component.css'
 })
 export class DeliveriesComponent implements OnInit {
   deliveries: Delivery[] = [];
+  filteredDeliveries: Delivery[] = [];
+  searchText: string = '';
 
   constructor(private baseService: BaseService, private router: Router) {}
 
@@ -29,6 +37,7 @@ export class DeliveriesComponent implements OnInit {
     this.baseService.getDeliveries().subscribe(
       (data: Delivery[]) => {
         this.deliveries = data;
+        this.filteredDeliveries = data;
       },
       (error) => {
         console.error('Error loading deliveries:', error);
@@ -48,5 +57,11 @@ export class DeliveriesComponent implements OnInit {
 
   onStartMonitoring() {
     this.router.navigate(['/monitoring']); // Navegar a la pantalla de monitoreo
+  }
+
+  filterDeliveries(): void {
+    this.filteredDeliveries = this.deliveries.filter((incident) =>
+      incident.destination.toLowerCase().includes(this.searchText.toLowerCase())
+    );
   }
 }
