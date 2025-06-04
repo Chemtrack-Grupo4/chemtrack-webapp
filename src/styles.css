@@ -1,16 +1,16 @@
 /* styles.css */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-.mat-dialog-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100% !important;
-  margin: 0 !important;
-}
+/*.mat-dialog-container {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  height: 100% !important;*/
+/*  margin: 0 !important;*/
+/*}*/
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  /*overflow: hidden;*/
   margin: 0;
   font-family: "Montserrat", sans-serif;
 }
@@ -63,3 +63,13 @@ html, body {
   background-color: #fb8c00;
 }
 
+.centered-dialog .mat-dialog-container {
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  position: fixed !important;
+  margin: 0 !important;
+  display: block !important;
+  /*max-width: 90vw;*/
+  /*max-height: 90vh;*/
+}

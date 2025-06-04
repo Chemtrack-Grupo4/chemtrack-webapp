@@ -1,12 +1,14 @@
-import {Component, OnInit} from '@angular/core';
-import {Delivery} from '../../model/delivery';
-import {BaseService} from '../../../../shared/services/base.service';
-import {Router} from '@angular/router';
-import {NgForOf, NgIf} from '@angular/common';
-import {MatIconButton} from '@angular/material/button';
-import {MatInput} from '@angular/material/input';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Incident} from '../../../../Incidents/model/incident';
+import { Component, OnInit } from '@angular/core';
+import { Delivery } from '../../model/delivery';
+import { BaseService } from '../../../../shared/services/base.service';
+import {Router, RouterLink} from '@angular/router';
+import { NgForOf, NgIf } from '@angular/common';
+import { MatIconButton } from '@angular/material/button';
+import { MatInput } from '@angular/material/input';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Incident } from '../../../../Incidents/model/incident';
+import { MatDialog } from '@angular/material/dialog';
+import {AddDeliveryPageComponent} from '../add-delivery-dialog/add-delivery-page.component';
 
 @Component({
   selector: 'app-deliveries',
@@ -18,7 +20,8 @@ import {Incident} from '../../../../Incidents/model/incident';
     MatIconButton,
     MatInput,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    RouterLink
   ],
   styleUrl: './deliveries.component.css'
 })
@@ -27,7 +30,11 @@ export class DeliveriesComponent implements OnInit {
   filteredDeliveries: Delivery[] = [];
   searchText: string = '';
 
-  constructor(private baseService: BaseService, private router: Router) {}
+  constructor(
+    private baseService: BaseService,
+    private router: Router,
+    private dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.loadDeliveries();
@@ -64,4 +71,24 @@ export class DeliveriesComponent implements OnInit {
       incident.destination.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
+
+  addNewDelivery(): void {
+    const dialogRef = this.dialog.open(AddDeliveryPageComponent, {
+      width: '400px',
+      panelClass: 'centered-dialog'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.deliveries.push({
+          ...result,
+          id: Math.random(),
+          packageDescription: result.descripcion || '',
+        });
+        this.filterDeliveries();
+      }
+    });
+  }
+
+
 }
