@@ -1,0 +1,40 @@
+<div class="delivery-details-container">
+  <div class="header">
+    <h2>Delivers</h2>
+    <h4>Delivery Trips</h4>
+    <img
+      src="https://github.com/user-attachments/assets/63ca6961-f592-49cd-a7d1-0a646b71ae12"
+      alt="Delivery Icon"
+      class="delivery-icon"
+    />
+  </div>
+
+  <div class="delivery-details-card-container">
+    <mat-card class="delivery-details-card" *ngIf="delivery">
+
+      <div class="delivery-details-header">
+        <h3>{{ delivery.destination }}</h3>
+        <p>{{ delivery.packageDescription }}</p>
+      </div>
+
+      <div class="delivery-details-body">
+        <div class="delivery-details-body-subtitle">
+          <p>Route Details</p>
+        </div>
+        <p>Salida: <span>{{ delivery.exitPoint }}</span></p>
+        <p>Ruta Principal: <span>{{ delivery.route }}</span></p>
+        <p>Parada: <span>{{ delivery.stop }}</span></p>
+        <p>Llegada: <span>{{ delivery.destination }}</span></p>
+        <div class="delivery-details-body-subtitle">
+          <p>Combustible type</p>
+        </div>
+        <p>{{ delivery.combustibleType }}</p>
+        <div class="delivery-details-body-subtitle">
+          <p>Warnings</p>
+        </div>
+        <p>{{ delivery.warnings }}</p>
+      </div>
+    </mat-card>
+    <button class="return-button" (click)="returnToDeliveries()">Return Home</button>
+  </div>
+</div>

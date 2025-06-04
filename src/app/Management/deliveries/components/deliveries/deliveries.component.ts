@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {Delivery} from './model/delivery';
-import {BaseService} from '../../shared/services/base.service';
+import {Delivery} from '../../model/delivery';
+import {BaseService} from '../../../../shared/services/base.service';
 import {Router} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Incident} from '../../Incidents/model/incident';
+import {Incident} from '../../../../Incidents/model/incident';
 
 @Component({
   selector: 'app-deliveries',
@@ -45,9 +45,9 @@ export class DeliveriesComponent implements OnInit {
     );
   }
 
-  onAccept(delivery: Delivery): void {
+  onDetails(delivery: Delivery): void {
     console.log('Accepted:', delivery);
-    // Aquí puedes agregar lógica para manejar la aceptación del delivery
+    this.router.navigate(['/delivery-details', delivery.id]);
   }
 
   onDecline(delivery: Delivery): void {
