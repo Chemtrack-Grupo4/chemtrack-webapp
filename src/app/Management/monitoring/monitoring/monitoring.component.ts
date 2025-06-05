@@ -4,7 +4,7 @@ import {Sensor} from '../model/monitoring';
 import {BaseService} from '../../../shared/services/base.service';
 import {BaseSensorService} from '../../../shared/services/base.sensor.service';
 import {MatCard} from '@angular/material/card';
-import {NgClass} from '@angular/common';
+import {NgClass, NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-monitoring',
@@ -12,7 +12,9 @@ import {NgClass} from '@angular/common';
   standalone: true,
   imports: [
     MatCard,
-    NgClass
+    NgClass,
+    NgIf,
+    NgForOf
   ],
   styleUrls: ['./monitoring.component.css']
 })
