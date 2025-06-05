@@ -7,6 +7,10 @@ import {DeliveriesComponent} from './Management/deliveries/components/deliveries
 import {DeliveryDetailsComponent} from './Management/deliveries/components/delivery-details/delivery-details.component';
 import {LoginComponent} from './Auth/login/login.component';
 import {SignupComponent} from './Auth/signup/signup.component';
+import {
+  AddDeliveryPageComponent
+} from './Management/deliveries/components/add-delivery-dialog/add-delivery-page.component';
+import {AddIncidentPageComponent} from './Incidents/components/add-new-incident/add-incident-page.component';
 
 export const routes: Routes = [
   { path: 'services', component: ServicesComponent },
@@ -17,5 +21,7 @@ export const routes: Routes = [
   { path: 'delivery-details/:id', component: DeliveryDetailsComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
+  { path: 'deliveries/add', component: AddDeliveryPageComponent },
+  { path: 'add-incident', component: AddIncidentPageComponent },
   { path: '', redirectTo: '/services', pathMatch: 'full' } // Ruta por defecto
 ];

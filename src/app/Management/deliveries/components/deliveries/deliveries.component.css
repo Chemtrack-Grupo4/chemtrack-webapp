@@ -186,3 +186,9 @@
   background-color: #659a0f;
   transform: scale(1.05);
 }
+/*.centered-dialog .mat-dialog-container {*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  min-height: unset;*/
+/*}*/
