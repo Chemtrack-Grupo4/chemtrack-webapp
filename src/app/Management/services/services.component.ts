@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import {Services} from './model/services';
 import {BaseService} from '../../shared/services/base.service';
 import {MatCard} from '@angular/material/card';
@@ -7,7 +6,7 @@ import {NgClass, NgForOf, NgIf} from '@angular/common';
 import {MatIconButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Incident} from '../../Incidents/model/incident';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-services',
@@ -30,7 +29,7 @@ export class ServicesComponent implements OnInit {
   filteredServices: Services[] = [];
   searchText: string = '';
 
-  constructor(private baseService: BaseService, private dialog: MatDialog) {}
+  constructor(private baseService: BaseService, private router: Router) {}
 
   ngOnInit(): void {
     this.loadServices();
@@ -50,6 +49,8 @@ export class ServicesComponent implements OnInit {
     );
   }
 
-
+  navigateToAddService(): void {
+    this.router.navigate(['/add-service']); // Cambia la ruta según tu configuración
+  }
 
 }

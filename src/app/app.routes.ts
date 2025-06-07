@@ -11,6 +11,7 @@ import {
   AddDeliveryPageComponent
 } from './Management/deliveries/components/add-delivery-dialog/add-delivery-page.component';
 import {AddIncidentPageComponent} from './Incidents/components/add-new-incident/add-incident-page.component';
+import {AddNewServiceComponent} from './Management/services/components/add-new-service/add-new-service.component';
 
 export const routes: Routes = [
   { path: 'services', component: ServicesComponent },
@@ -23,5 +24,6 @@ export const routes: Routes = [
   { path: 'signup', component: SignupComponent },
   { path: 'deliveries/add', component: AddDeliveryPageComponent },
   { path: 'add-incident', component: AddIncidentPageComponent },
+  { path: 'add-service', component: AddNewServiceComponent },
   { path: '', redirectTo: '/services', pathMatch: 'full' } // Ruta por defecto
 ];
