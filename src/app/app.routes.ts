@@ -25,5 +25,5 @@ export const routes: Routes = [
   { path: 'deliveries/add', component: AddDeliveryPageComponent },
   { path: 'add-incident', component: AddIncidentPageComponent },
   { path: 'add-service', component: AddNewServiceComponent },
-  { path: '', redirectTo: '/services', pathMatch: 'full' } // Ruta por defecto
+  { path: '', redirectTo: '/login', pathMatch: 'full' } // Ruta por defecto
 ];
