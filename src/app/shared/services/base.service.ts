@@ -85,11 +85,11 @@ export class BaseService {
     return this.http.get<Delivery>(`${this.apiUrl}/deliveries/${id}`);
   }
 
-  createDelivery(data: Delivery): Observable<Delivery> {
+  createDelivery(data: any): Observable<Delivery> {
     return this.http.post<Delivery>(`${this.apiUrl}/deliveries`, data, this.httpOptions);
   }
 
-  deleteDelivery(id: string): Observable<void> {
+  deleteDelivery(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/deliveries/${id}`);
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {Router} from '@angular/router';
+import {BaseService} from '../../../../shared/services/base.service';
 
 @Component({
   selector: 'app-add-new-service',
@@ -19,11 +20,17 @@ export class AddNewServiceComponent {
     incidents: ''
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private baseService: BaseService) {}
 
   onSave() {
-    // Aquí puedes llamar a tu servicio para guardar el delivery si lo necesitas
-    this.router.navigate(['/services']); // Regresa a la lista
+    this.baseService.createService(this.service).subscribe({
+      next: () => {
+        this.router.navigate(['/services']); // Regresa a la lista
+      },
+      error: (err) => {
+        console.error('Error al crear el servicio:', err);
+      }
+    });
   }
 
   onCancel() {

@@ -58,8 +58,15 @@ export class DeliveriesComponent implements OnInit {
   }
 
   onDecline(delivery: Delivery): void {
-    console.log('Declined:', delivery);
-    // Aquí puedes agregar lógica para manejar el rechazo del delivery
+    this.baseService.deleteDelivery(delivery.id).subscribe({
+      next: () => {
+        console.log('Delivery eliminado:', delivery);
+        this.loadDeliveries(); // Recargar la lista de deliveries
+      },
+      error: (err) => {
+        console.error('Error al eliminar el delivery:', err);
+      }
+    });
   }
 
   onStartMonitoring() {

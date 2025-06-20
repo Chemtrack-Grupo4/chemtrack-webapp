@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import {BaseService} from '../../../../shared/services/base.service';
 
 @Component({
   selector: 'app-add-delivery-page',
@@ -13,19 +14,25 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class AddDeliveryPageComponent {
   delivery = {
     destination: '',
-    salida: '',
-    ruta: '',
-    parada: '',
-    combustible: '',
-    descripcion: '',
-    alertas: ''
+    exitPoint: '',
+    route: '',
+    stop: '',
+    combustibleType: '',
+    packageDescription: '',
+    warnings: ''
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private baseService: BaseService) {}
 
   onSave() {
-    // Aquí puedes llamar a tu servicio para guardar el delivery si lo necesitas
-    this.router.navigate(['/deliveries']); // Regresa a la lista
+    this.baseService.createDelivery(this.delivery).subscribe({
+      next: () => {
+        this.router.navigate(['/deliveries']); // Regresa a la lista
+      },
+      error: (err) => {
+        console.error('Error al crear el servicio:', err);
+      }
+    });
   }
 
   onCancel() {

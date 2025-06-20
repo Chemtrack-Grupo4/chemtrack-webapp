@@ -8,27 +8,27 @@
       </div>
       <div class="form-group">
         <label>Salida</label>
-        <input class="input" [(ngModel)]="delivery.salida" name="salida" required />
+        <input class="input" [(ngModel)]="delivery.exitPoint" name="salida" required />
       </div>
       <div class="form-group">
         <label>Ruta</label>
-        <input class="input" [(ngModel)]="delivery.ruta" name="ruta" required />
+        <input class="input" [(ngModel)]="delivery.route" name="ruta" required />
       </div>
       <div class="form-group">
         <label>Parada</label>
-        <input class="input" [(ngModel)]="delivery.parada" name="parada" />
+        <input class="input" [(ngModel)]="delivery.stop" name="parada" />
       </div>
       <div class="form-group">
         <label>Tipo de combustible</label>
-        <input class="input" [(ngModel)]="delivery.combustible" name="combustible" />
+        <input class="input" [(ngModel)]="delivery.combustibleType" name="combustible" />
       </div>
       <div class="form-group">
         <label>Descripción</label>
-        <input class="input" [(ngModel)]="delivery.descripcion" name="descripcion" />
+        <input class="input" [(ngModel)]="delivery.packageDescription" name="descripcion" />
       </div>
       <div class="form-group">
         <label>Alertas</label>
-        <input class="input" [(ngModel)]="delivery.alertas" name="alertas" />
+        <input class="input" [(ngModel)]="delivery.warnings" name="alertas" />
       </div>
       <div class="button-row">
         <button type="button" class="cancel-btn" (click)="onCancel()">Cancel</button>
