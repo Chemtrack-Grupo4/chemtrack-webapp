@@ -16,7 +16,8 @@
       <h3>Sensor ID: {{ sensor.id }}</h3>
       <p>Gas Value: {{ sensor.gasValue }}</p>
       <p>Temperature: {{ sensor.temp }}°C</p>
-      <p>Status: <span [ngClass]="sensor.safe ? 'status-safe' : 'status-unsafe'">{{ sensor.safe ? 'Safe' : 'Unsafe' }}</span></p>
+      <p>HeartRate Value: {{ sensor.heartRate }}</p>
+      <p>Gas Status: <span [ngClass]="sensor.safe ? 'status-safe' : 'status-unsafe'">{{ sensor.safe ? 'Safe' : 'Unsafe' }}</span></p>
     </mat-card>
   </div>
 </div>

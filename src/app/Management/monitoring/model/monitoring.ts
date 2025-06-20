@@ -4,6 +4,7 @@ export class Sensor {
   temp: number;
   safe: boolean;
   unsafe: boolean;
+  heartRate: number;
 
   constructor() {
     this.id = 0;
@@ -11,5 +12,6 @@ export class Sensor {
     this.temp = 0;
     this.safe = false;
     this.unsafe = false;
+    this.heartRate = 0;
   }
 }
