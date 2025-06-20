@@ -51,7 +51,7 @@ export class BaseService {
     return this.http.get<Incident>(`${this.apiUrl}/incidents/${id}`);
   }
 
-  createIncident(data: Incident): Observable<Incident> {
+  createIncident(data: any): Observable<Incident> {
     return this.http.post<Incident>(`${this.apiUrl}/incidents`, data, this.httpOptions);
   }
 

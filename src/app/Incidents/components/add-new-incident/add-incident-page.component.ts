@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import {Router} from '@angular/router';
+import {BaseService} from '../../../shared/services/base.service';
 
 @Component({
   selector: 'app-add-incident-page',
@@ -11,15 +13,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class AddIncidentPageComponent {
   incident = {
-    name: '',
+    incidentPlace: '',
     description: '',
-    damage: '',
-    status: ''
+    date: ''
   };
 
+  constructor(private router: Router, private baseService: BaseService) {}
+
   onSave() {
-    // Aquí puedes manejar el envío del formulario (ejemplo: llamar servicio, navegar, etc.)
-    alert(JSON.stringify(this.incident, null, 2));
+    this.baseService.createIncident(this.incident).subscribe({
+      next: () => {
+        this.router.navigate(['/incidents']); // Regresa a la lista
+      },
+      error: (err) => {
+        console.error('Error al crear el servicio:', err);
+      }
+    });
   }
 
   onCancel() {
