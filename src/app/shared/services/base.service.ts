@@ -12,7 +12,7 @@ import {Sensor} from '../../Management/monitoring/model/monitoring';
 })
 
 export class BaseService {
-  private apiUrl = 'http://localhost:8080/api/chemtrack/v1';
+  private apiUrl = 'http://localhost:8080/api/safe-flow/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -83,6 +83,13 @@ export class BaseService {
 
   getDeliveryById(id: string): Observable<Delivery> {
     return this.http.get<Delivery>(`${this.apiUrl}/deliveries/${id}`);
+  }
+
+  updateDeliveryState(id: number, employeeId: any): Observable<Delivery> {
+    return this.http.put<Delivery>(
+      `${this.apiUrl}/deliveries/${id}/in-progress?employeeId=${employeeId}`,
+      {} // cuerpo vacío
+    );
   }
 
   createDelivery(data: any): Observable<Delivery> {

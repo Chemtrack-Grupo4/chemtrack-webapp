@@ -27,8 +27,9 @@
           />
         </div>
         <div class="button-group">
-          <button class="decline-button" (click)="onDecline(delivery)">Delete</button>
-          <button class="accept-button" (click)="onDetails(delivery)">Details</button>
+          <button class="details-button" *ngIf="delivery.state === 'IN_PROGRESS'" (click)="onDetails(delivery)">Details</button>
+          <button class="accept-button" *ngIf="delivery.state === 'PENDING'" (click)="onAccept(delivery)">Accept</button>
+          <button class="decline-button" *ngIf="delivery.state === 'PENDING'" (click)="onDecline(delivery)">Delete</button>
         </div>
       </div>
       <!-- Botón para abrir el diálogo de nuevo delivery -->

@@ -29,10 +29,14 @@
           <p>Combustible type</p>
         </div>
         <p>{{ delivery.combustibleType }}</p>
-        <div class="delivery-details-body-subtitle">
-          <p>Warnings</p>
-        </div>
-        <p>{{ delivery.warnings }}</p>
+      </div>
+    </mat-card>
+    <mat-card class="delivery-details-card" *ngIf="device">
+
+      <div class="delivery-details-header">
+        <h3>Sensor</h3>
+        <p>Id: {{ device.id }}</p>
+        <p>Safe: {{ device.safe }}</p>
       </div>
     </mat-card>
     <button class="return-button" (click)="returnToDeliveries()">Return Home</button>

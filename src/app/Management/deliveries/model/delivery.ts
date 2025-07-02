@@ -7,7 +7,9 @@ export class Delivery {
   route: string;
   stop: string;
   combustibleType: string;
-  warnings: string;
+  employeeId: string;
+  ownerId: string;
+  state: string;
 
   constructor() {
     this.id = 0;
@@ -17,7 +19,9 @@ export class Delivery {
     this.route = '';
     this.stop = '';
     this.combustibleType = '';
-    this.warnings = '';
+    this.employeeId = '';
+    this.ownerId = '';
+    this.state = '';
   }
 
 

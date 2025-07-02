@@ -4,9 +4,7 @@ import { BaseService } from '../../../../shared/services/base.service';
 import {Router, RouterLink} from '@angular/router';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
-import { MatInput } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Incident } from '../../../../Incidents/model/incident';
 import { MatDialog } from '@angular/material/dialog';
 import {AddDeliveryPageComponent} from '../add-delivery-dialog/add-delivery-page.component';
 
@@ -18,7 +16,6 @@ import {AddDeliveryPageComponent} from '../add-delivery-dialog/add-delivery-page
     NgForOf,
     NgIf,
     MatIconButton,
-    MatInput,
     ReactiveFormsModule,
     FormsModule,
     RouterLink
@@ -57,6 +54,18 @@ export class DeliveriesComponent implements OnInit {
     this.router.navigate(['/delivery-details', delivery.id]);
   }
 
+  onAccept(delivery: Delivery): void {
+    this.baseService.updateDeliveryState(delivery.id, 1).subscribe({
+      next: () => {
+        console.log('Delivery aceptado:', delivery);
+        this.loadDeliveries(); // Recargar la lista de deliveries
+      },
+      error: (err) => {
+        console.error('Error al aceptar el delivery:', err);
+      }
+    });
+  }
+
   onDecline(delivery: Delivery): void {
     this.baseService.deleteDelivery(delivery.id).subscribe({
       next: () => {
@@ -78,24 +87,4 @@ export class DeliveriesComponent implements OnInit {
       incident.destination.toLowerCase().includes(this.searchText.toLowerCase())
     );
   }
-
-  addNewDelivery(): void {
-    const dialogRef = this.dialog.open(AddDeliveryPageComponent, {
-      width: '400px',
-      panelClass: 'centered-dialog'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        this.deliveries.push({
-          ...result,
-          id: Math.random(),
-          packageDescription: result.descripcion || '',
-        });
-        this.filterDeliveries();
-      }
-    });
-  }
-
-
 }

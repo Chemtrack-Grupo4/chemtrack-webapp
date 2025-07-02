@@ -15,8 +15,8 @@
     <mat-card class="sensor-card" *ngFor="let sensor of sensors">
       <h3>Sensor ID: {{ sensor.id }}</h3>
       <p>Gas Value: {{ sensor.gasValue }}</p>
-      <p>Temperature: {{ sensor.temp }}°C</p>
-      <p>HeartRate Value: {{ sensor.heartRate }}</p>
+      <p>Temperature: {{ sensor.temperatureValue }}°C</p>
+      <p>HeartRate Value: {{ sensor.heartRateValue }}</p>
       <p>Gas Status: <span [ngClass]="sensor.safe ? 'status-safe' : 'status-unsafe'">{{ sensor.safe ? 'Safe' : 'Unsafe' }}</span></p>
     </mat-card>
   </div>

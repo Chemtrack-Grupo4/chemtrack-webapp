@@ -5,6 +5,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {BaseService} from '../../../../shared/services/base.service';
 import {Delivery} from '../../model/delivery';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Device} from '../../model/device.model';
+import {BaseSensorService} from '../../../../shared/services/base.sensor.service';
 
 @Component({
   selector: 'app-delivery-details',
@@ -21,13 +23,15 @@ import {ActivatedRoute, Router} from '@angular/router';
 export class DeliveryDetailsComponent implements OnInit {
   delivery: Delivery | null = null
   deliveryId: string | null = null;
+  device: Device | null = null;
 
-  constructor(private baseService: BaseService, private route: ActivatedRoute, private router: Router) {}
+  constructor(private baseService: BaseService, private route: ActivatedRoute, private router: Router, private baseSensorService: BaseSensorService) {}
 
   ngOnInit(): void {
     this.deliveryId = this.route.snapshot.paramMap.get('id'); // Obtiene el id de la URL
     if (this.deliveryId) {
       this.loadServices(this.deliveryId);
+      this.loadSensorByDeliveryId(this.deliveryId);
     }
   }
 
@@ -37,6 +41,19 @@ export class DeliveryDetailsComponent implements OnInit {
       console.log('Deliveries:', this.delivery);
     });
   }
+
+  loadSensorByDeliveryId(deliveryId: string): void {
+    this.baseSensorService.getSensorByDeliveryId(deliveryId).subscribe(
+      (data: Device[]) => {
+        this.device = data.length > 0 ? data[0] : null;
+        console.log('Sensor:', this.device);
+      },
+      (error) => {
+        console.error('Error al cargar el sensor:', error);
+      }
+    );
+  }
+
   returnToDeliveries(): void {
     this.router.navigate(['/deliveries']);
   }

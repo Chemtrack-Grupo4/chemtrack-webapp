@@ -19,7 +19,8 @@ export class AddDeliveryPageComponent {
     stop: '',
     combustibleType: '',
     packageDescription: '',
-    warnings: ''
+    employeeId: 0, // Asignar un ID de empleado por defecto, o cambiar según sea necesario
+    ownerId: 1 // Asignar un ID de propietario por defecto, o cambiar según sea necesario
   };
 
   constructor(private router: Router, private baseService: BaseService) {}

@@ -30,7 +30,7 @@ export class MonitoringComponent implements OnInit {
   }
 
   loadSensors(): void {
-    this.baseSensorService.getSensors().subscribe(
+    this.baseSensorService.getRecords().subscribe(
       (data: Sensor[]) => {
         console.log('Sensors loaded:', data); // Verificar que los datos se reciben correctamente
         this.sensors = data;

@@ -12,7 +12,7 @@ import {Sensor} from '../../Management/monitoring/model/monitoring';
 })
 
 export class BaseSensorService {
-  private apiUrl = 'http://localhost:8080/api/chemtrack/v1';
+  private apiUrl = 'http://localhost:8080/api/safeflow/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -30,6 +30,10 @@ export class BaseSensorService {
     return this.http.get(`${this.apiUrl}/sensors/${id}`);
   }
 
+  getSensorByDeliveryId(deliveryId: string): Observable<any> {
+    return this.http.get(`${this.apiUrl}/sensors/delivery/${deliveryId}`);
+  }
+
   createSensor(data: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/sensors`, data, this.httpOptions);
   }
@@ -40,6 +44,11 @@ export class BaseSensorService {
 
   deleteSensor(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/sensors/${id}`);
+  }
+
+  // --- Métodos para Records ---
+  getRecords(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/records`);
   }
 
 

@@ -115,7 +115,7 @@
   margin: 10px 0;
 }
 
-.decline-button, .accept-button {
+.decline-button, .accept-button, .details-button {
   padding: 8px 16px;
   font-size: 0.9em;
   border: none;
@@ -132,6 +132,11 @@
   background-color: #ffeb3b;
   color: #333;
   font-weight: bold;
+}
+
+.details-button {
+  background-color: #2196F3;
+  color: #fff;
 }
 
 .decline-button:hover {
