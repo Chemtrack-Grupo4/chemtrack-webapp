@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Servicios} from '../../Management/servicios/model/servicios';
+import {Services} from '../../Management/services/model/services';
 import {Delivery} from '../../Management/deliveries/model/delivery';
 import {Incident} from '../../Incidents/model/incident';
 import {Sensor} from '../../Management/monitoring/model/monitoring';
@@ -12,7 +12,7 @@ import {Sensor} from '../../Management/monitoring/model/monitoring';
 })
 
 export class BaseService {
-  private apiUrl = 'http://localhost:8080/api/safe-flow/v1';
+  private apiUrl = 'http://localhost:8080/api/chemtrack/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -51,7 +51,7 @@ export class BaseService {
     return this.http.get<Incident>(`${this.apiUrl}/incidents/${id}`);
   }
 
-  createIncident(data: Incident): Observable<Incident> {
+  createIncident(data: any): Observable<Incident> {
     return this.http.post<Incident>(`${this.apiUrl}/incidents`, data, this.httpOptions);
   }
 
@@ -60,8 +60,8 @@ export class BaseService {
   }
 
   // --- Métodos para Services ---
-  getServices(): Observable<Servicios[]> {
-    return this.http.get<Servicios[]>(`${this.apiUrl}/services`);
+  getServices(): Observable<Services[]> {
+    return this.http.get<Services[]>(`${this.apiUrl}/services`);
   }
 
   getServiceById(id: string): Observable<any> {
@@ -85,11 +85,11 @@ export class BaseService {
     return this.http.get<Delivery>(`${this.apiUrl}/deliveries/${id}`);
   }
 
-  createDelivery(data: Delivery): Observable<Delivery> {
+  createDelivery(data: any): Observable<Delivery> {
     return this.http.post<Delivery>(`${this.apiUrl}/deliveries`, data, this.httpOptions);
   }
 
-  deleteDelivery(id: string): Observable<void> {
+  deleteDelivery(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/deliveries/${id}`);
   }
 

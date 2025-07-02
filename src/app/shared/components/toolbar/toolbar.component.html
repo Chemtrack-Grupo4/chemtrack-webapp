@@ -5,10 +5,12 @@
     Chemtrack
   </span>
   <span class="spacer"></span>
-  <nav>
+  <i *ngIf="showMenuIcon" class="menu-icon fa-solid fa-bars" style="color: #ffffff;" (click)="toggleMenu()"></i>
+  <nav *ngIf="!showMenuIcon || isMenuOpen">
     <a mat-button routerLink="/services" routerLinkActive="active-link">Services</a>
     <a mat-button routerLink="/deliveries" routerLinkActive="active-link">Deliveries</a>
     <a mat-button routerLink="/incidents" routerLinkActive="active-link">Incidents</a>
     <a mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>
+    <a *ngIf="showLogOutButton" mat-button class="log-out" routerLinkActive="active-link" (click)="logOut()">Log Out</a>
   </nav>
 </mat-toolbar>

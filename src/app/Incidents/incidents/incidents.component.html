@@ -1,15 +1,20 @@
 <!-- src/app/components/incidents/incidents.component.html -->
 <div class="incidents-container">
-  <h1>Incidents</h1>
+  <div class="header">
+    <h1>Incidents</h1>
+  </div>
   <mat-card class="search-card">
     <div class="search-container">
-      <mat-icon class="search-icon"></mat-icon>
-      <input matInput placeholder="Search for incidents..." />
+      <input matInput placeholder="Search for incidents..." [(ngModel)]="searchText"
+             (input)="filterIncidents()" />
+      <button mat-icon-button class="search-button">
+        <i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i>
+      </button>
     </div>
   </mat-card>
 
   <div class="incidents-list">
-    <mat-card class="incident-card" *ngFor="let incident of incidents">
+    <mat-card class="incident-card" *ngFor="let incident of filteredIncidents">
       <div class="incident-info">
         <!-- Reemplazamos el mat-icon con la imagen proporcionada -->
         <img
@@ -26,4 +31,5 @@
       </div>
     </mat-card>
   </div>
+  <button class="floating-button" [routerLink]="['/add-incident']">Add new incident</button>
 </div>

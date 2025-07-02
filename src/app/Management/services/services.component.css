@@ -14,7 +14,7 @@
 .search-card {
   max-width: 500px;
   margin: 0 auto;
-  padding: 16px;
+  padding: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background-color: #fff;
@@ -24,9 +24,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 2px solid #88C01B;
+  /*border: 2px solid #88C01B;*/
   border-radius: 8px;
-  padding: 8px;
+  padding: 2px;
 }
 
 .search-container input {
@@ -50,14 +50,6 @@
 
 .search-button:hover {
   background-color: #699811;
-}
-
-.title {
-  text-align: center;
-  font-size: 1.8em;
-  font-weight: bold;
-  color: #333;
-  margin: 20px 0;
 }
 
 .services-list {
@@ -128,20 +120,25 @@
   color: orange;
 }
 
-.add-service-button {
+.add-service-button  {
   position: fixed;
-  bottom: 20px;
+  bottom: 70px; /* Incrementamos el espacio para que quede sobre el footer */
   right: 20px;
-  background-color: #ffa726;
+  padding: 12px 24px;
+  background-color: #93cc30; /* Color naranja */
   color: white;
+  font-size: 1em;
+  font-weight: bold;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .add-service-button:hover {
-  background-color: #fb8c00;
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  background-color: #659a0f;
+  transform: scale(1.05);
 }
 
 .custom-dialog-container {

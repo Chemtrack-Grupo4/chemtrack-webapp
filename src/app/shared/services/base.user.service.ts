@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Servicios} from '../../Management/servicios/model/servicios';
+import {Services} from '../../Management/services/model/services';
 import {Delivery} from '../../Management/deliveries/model/delivery';
 import {Incident} from '../../Incidents/model/incident';
 import {Sensor} from '../../Management/monitoring/model/monitoring';

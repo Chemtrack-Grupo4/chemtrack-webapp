@@ -2,6 +2,7 @@
 
 .toolbar {
   width: 100%;
+  height: 56px;
   background-color: #88C01B; /* Color naranja */
   color: white;
   padding: 0 20px;
@@ -16,8 +17,9 @@
 }
 
 .app-logo {
-  width: 30px;            /* Tamaño del logo */
-  height: 30px;           /* Tamaño del logo */
+  width: 40px;            /* Tamaño del logo */
+  /*height: 30px;            Tamaño del logo */
+  height: auto;
   margin-right: 10px;     /* Espacio entre el logo y el texto */
 }
 
@@ -28,8 +30,20 @@
 nav a {
   color: white;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 1em;
   margin-right: 20px;
+}
+
+.log-out {
+  background-color: #000;
+  padding: 8px 16px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+}
+
+.log-out:hover {
+  background-color: #333;
 }
 
 .active-link {
@@ -42,6 +56,17 @@ nav a {
   .toolbar {
     flex-direction: column;
     padding: 10px 20px;
+    height: auto;
+  }
+
+  .menu-icon {
+    padding: 10px 0;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
   }
 
   nav a {
