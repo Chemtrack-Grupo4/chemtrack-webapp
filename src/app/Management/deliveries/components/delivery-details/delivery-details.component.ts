@@ -35,6 +35,20 @@ export class DeliveryDetailsComponent implements OnInit {
     }
   }
 
+  //En caso de contar con el rol del usuario en el local storage, se omite la carga del sensor si el usuario es una empresa.
+  /*ngOnInit(): void {
+    this.deliveryId = this.route.snapshot.paramMap.get('id'); // Obtiene el id de la URL
+    const role = localStorage.getItem('role'); // Obtiene el rol del usuario
+
+    if (this.deliveryId) {
+      this.loadServices(this.deliveryId);
+
+      if (role !== 'COMPANY') {
+        this.loadSensorByDeliveryId(this.deliveryId);
+      }
+    }
+  }*/
+
   loadServices(id: string): void {
     this.baseService.getDeliveryById(id).subscribe(data => {
       this.delivery = data;

@@ -37,6 +37,31 @@ export class DeliveriesComponent implements OnInit {
     this.loadDeliveries();
   }
 
+  // En caso de contar con el rol del usuario en el local storage, se puede filtrar por estado o usuario dependiendo del rol.
+  /*ngOnInit(): void {
+    const role = localStorage.getItem('role');
+    const ownerId = localStorage.getItem('userId');
+
+    if (role === 'COMPANY' && userId) {
+      this.loadDeliveriesByUserId(userId);
+    } else if (role === 'EMPLOYEE') {
+      this.loadDeliveries();
+    }
+  }*/
+
+  // Metodo para cargar entregas por ID de usuario en caso de que el usuario sea una empresa.
+  /*loadDeliveriesByUserId(userId: string): void {
+    this.baseService.getDeliveriesByUserId(userId).subscribe(
+      (data: Delivery[]) => {
+        this.deliveries = data;
+        this.filteredDeliveries = data;
+      },
+      (error) => {
+        console.error('Error loading deliveries by userId:', error);
+      }
+    );
+  }  */
+
   loadDeliveries(): void {
     this.baseService.getDeliveries().subscribe(
       (data: Delivery[]) => {
