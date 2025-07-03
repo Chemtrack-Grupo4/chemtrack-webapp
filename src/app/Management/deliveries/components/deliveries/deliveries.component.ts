@@ -78,10 +78,6 @@ export class DeliveriesComponent implements OnInit {
     });
   }
 
-  onStartMonitoring() {
-    this.router.navigate(['/monitoring']); // Navegar a la pantalla de monitoreo
-  }
-
   filterDeliveries(): void {
     this.filteredDeliveries = this.deliveries.filter((incident) =>
       incident.destination.toLowerCase().includes(this.searchText.toLowerCase())
