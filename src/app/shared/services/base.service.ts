@@ -23,7 +23,7 @@ export class BaseService {
 
   // --- Métodos para Sensors ---
   getSensors(): Observable<Sensor[]> {
-    console.log('Calling getSensors API'); // Log para verificar que se llama al método
+    console.log('Calling getSensors API'); // Log para verificar que se llama al metodo
     return this.http.get<Sensor[]>(`${this.apiUrl}/sensors`);
   }
   getSensorById(id: string): Observable<any> {

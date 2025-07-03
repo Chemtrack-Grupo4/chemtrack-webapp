@@ -24,8 +24,13 @@ export class ToolbarComponent {
   showLogOutButton: boolean = true;
   showMenuIcon: boolean = window.innerWidth <= 600;
   isMenuOpen: boolean = false;
+  // Variable para almacenar el rol del usuario
+  //userRole: string | null = null;
 
   constructor(private router: Router) {
+    // Inicializa el rol del usuario desde localStorage
+    //this.userRole = localStorage.getItem('role'); // Obtiene el rol del usuario desde localStorage
+
     this.router.events.subscribe(() => {
       const currentRoute = this.router.url;
       this.showLogOutButton = !(currentRoute === '/login' || currentRoute === '/signup');

@@ -11,6 +11,8 @@
     <a mat-button routerLink="/deliveries" routerLinkActive="active-link">Deliveries</a>
     <a mat-button routerLink="/incidents" routerLinkActive="active-link">Incidents</a>
     <a mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>
+<!--    Descomentar la siguiente línea si se quiere mostrar el botón de empleados para usuarios de tipo COMPANY-->
+<!--    <a *ngIf="userRole === 'COMPANY'" mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>-->
     <a *ngIf="showLogOutButton" mat-button class="log-out" routerLinkActive="active-link" (click)="logOut()">Log Out</a>
   </nav>
 </mat-toolbar>
