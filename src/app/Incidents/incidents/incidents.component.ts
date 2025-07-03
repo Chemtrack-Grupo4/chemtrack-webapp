@@ -38,14 +38,24 @@ export class IncidentsComponent implements OnInit {
   loadIncidents(): void {
     this.baseService.getIncidents().subscribe(
       (data: Incident[]) => {
-        this.incidents = data;
-        this.filteredIncidents = data;
+        this.incidents = data.map((incident) => {
+          const [year, month, day] = incident.date; // Extrae los valores necesarios
+          incident.date = `${year}/${month}/${day}`; // Formatea la fecha
+
+          incident.description = incident.description
+            .replace(/UnsafeLocation:/g, 'Unsafe\nLocation:') // separa los campos pegados
+            .replace(/\\n/g, '\n'); // por si los saltos vienen como texto plano '\n'
+
+          return incident;
+        });
+        this.filteredIncidents = this.incidents;
       },
       (error) => {
         console.error('Error fetching incidents:', error);
       }
     );
   }
+
   filterIncidents(): void {
     this.filteredIncidents = this.incidents.filter((incident) =>
       incident.incidentPlace.toLowerCase().includes(this.searchText.toLowerCase())

@@ -16,7 +16,6 @@
   <div class="incidents-list">
     <mat-card class="incident-card" *ngFor="let incident of filteredIncidents">
       <div class="incident-info">
-        <!-- Reemplazamos el mat-icon con la imagen proporcionada -->
         <img
           src="https://github.com/user-attachments/assets/3d710fe1-ae8d-4760-b80f-d217acd4c24c"
           alt="Incident Icon"
@@ -25,7 +24,8 @@
 
         <div>
           <h3>{{ incident.incidentPlace }}</h3>
-          <p class="description">Description: {{ incident.description }}</p>
+          <p class="description-title">Description:</p>
+          <p class="description" [innerText]="incident.description"></p>
         </div>
         <span class="date">{{ incident.date }}</span>
       </div>
