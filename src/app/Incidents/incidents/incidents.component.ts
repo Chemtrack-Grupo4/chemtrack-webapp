@@ -7,7 +7,6 @@ import {Incident} from '../model/incident';
 import {BaseService} from '../../shared/services/base.service';
 import {MatIconButton} from '@angular/material/button';
 import {FormsModule} from '@angular/forms';
-import {RouterLink} from '@angular/router';
 
 @Component({
     selector: 'app-incidents',
@@ -17,8 +16,7 @@ import {RouterLink} from '@angular/router';
         MatIconModule, //  ← <mat-icon>
         MatInputModule, //  ← matInput
         MatIconButton,
-        FormsModule,
-        RouterLink
+        FormsModule
     ],
     templateUrl: './incidents.component.html',
     styleUrls: ['./incidents.component.css']
