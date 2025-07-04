@@ -68,6 +68,20 @@ export class DeliveryDetailsComponent implements OnInit {
     );
   }
 
+  markAsCompleted(): void {
+    if (this.delivery && this.delivery.id) {
+      this.baseService.updateDeliveryStateCompleted(this.delivery.id).subscribe({
+        next: () => {
+          console.log('Delivery marcado como completado');
+          this.returnToDeliveries(); // Regresa a la lista de entregas después de completar
+        },
+        error: (err) => {
+          console.error('Error al marcar como completado:', err);
+        }
+      });
+    }
+  }
+
   returnToDeliveries(): void {
     this.router.navigate(['/deliveries']);
   }

@@ -47,8 +47,8 @@ export class BaseSensorService {
   }
 
   // --- Métodos para Records ---
-  getRecords(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/records`);
+  getRecordsByDeliveryId(id : string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/records/delivery/${id}`);
   }
 
 

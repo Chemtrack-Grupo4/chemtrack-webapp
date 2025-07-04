@@ -116,7 +116,7 @@
   margin: 10px 0;
 }
 
-.decline-button, .accept-button, .details-button {
+.decline-button, .accept-button, .details-button, .report-button {
   padding: 8px 16px;
   font-size: 0.9em;
   border: none;
@@ -146,6 +146,11 @@
 
 .accept-button:hover {
   background-color: #fdd835;
+}
+
+.report-button {
+  background-color: #f44336;
+  color: #fff;
 }
 
 .add-delivery-button {

@@ -26,6 +26,8 @@ export class DeliveriesComponent implements OnInit {
   deliveries: Delivery[] = [];
   filteredDeliveries: Delivery[] = [];
   searchText: string = '';
+  //Variable para almacenar el rol del usuario
+  //userRole: string | null = null;
 
   constructor(
     private baseService: BaseService,
@@ -39,6 +41,7 @@ export class DeliveriesComponent implements OnInit {
 
   // En caso de contar con el rol del usuario en el local storage, se puede filtrar por estado o usuario dependiendo del rol.
   /*ngOnInit(): void {
+    this.userRole = localStorage.getItem('role');
     const role = localStorage.getItem('role');
     const ownerId = localStorage.getItem('userId');
 
@@ -79,8 +82,13 @@ export class DeliveriesComponent implements OnInit {
     this.router.navigate(['/delivery-details', delivery.id]);
   }
 
+  onReport(delivery: Delivery): void {
+    console.log('Report:', delivery);
+    this.router.navigate(['/delivery-report', delivery.id]);
+  }
+
   onAccept(delivery: Delivery): void {
-    this.baseService.updateDeliveryState(delivery.id, 1).subscribe({
+    this.baseService.updateDeliveryStateInProgress(delivery.id, 1).subscribe({
       next: () => {
         console.log('Delivery aceptado:', delivery);
         this.loadDeliveries(); // Recargar la lista de deliveries

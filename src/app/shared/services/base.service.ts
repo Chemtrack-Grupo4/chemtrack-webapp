@@ -85,9 +85,20 @@ export class BaseService {
     return this.http.get<Delivery>(`${this.apiUrl}/deliveries/${id}`);
   }
 
-  updateDeliveryState(id: number, employeeId: any): Observable<Delivery> {
+  getDeliveriesByUserId(userId: string): Observable<Delivery[]> {
+    return this.http.get<Delivery[]>(`${this.apiUrl}/deliveries/${userId}`);
+  }
+
+  updateDeliveryStateInProgress(id: number, employeeId: any): Observable<Delivery> {
     return this.http.put<Delivery>(
       `${this.apiUrl}/deliveries/${id}/in-progress?employeeId=${employeeId}`,
+      {} // cuerpo vacío
+    );
+  }
+
+  updateDeliveryStateCompleted(id: number): Observable<Delivery> {
+    return this.http.put<Delivery>(
+      `${this.apiUrl}/deliveries/${id}/completed`,
       {} // cuerpo vacío
     );
   }

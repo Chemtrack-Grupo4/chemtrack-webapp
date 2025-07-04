@@ -11,6 +11,7 @@ import {
 } from './Management/deliveries/components/add-delivery-dialog/add-delivery-page.component';
 import {AddIncidentPageComponent} from './Incidents/components/add-new-incident/add-incident-page.component';
 import {AddNewServiceComponent} from './Management/services/components/add-new-service/add-new-service.component';
+import {ReportComponent} from './Management/reports/components/report/report.component';
 
 export const routes: Routes = [
   { path: 'services', component: ServicesComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'employees', component: ComponentsComponent },
   { path: 'deliveries', component: DeliveriesComponent },
   { path: 'delivery-details/:id', component: DeliveryDetailsComponent },
+  { path: 'delivery-report/:id', component: ReportComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'deliveries/add', component: AddDeliveryPageComponent },

@@ -39,6 +39,9 @@
         <p>Safe: {{ device.safe }}</p>
       </div>
     </mat-card>
-    <button class="return-button" (click)="returnToDeliveries()">Return Home</button>
+    <div class="buttons">
+      <button class="completed-button" (click)="markAsCompleted()">Mark as Completed</button>
+      <button class="return-button" (click)="returnToDeliveries()">Return Home</button>
+    </div>
   </div>
 </div>

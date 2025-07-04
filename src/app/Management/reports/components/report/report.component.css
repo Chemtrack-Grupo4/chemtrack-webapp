@@ -55,30 +55,6 @@
   margin-top: 30px;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 20px;
-}
-
-.completed-button {
-  padding: 12px 8px;
-  font-size: 0.9em;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  max-width: 180px;
-  background-color: #4CAF50;
-  color: #fff;
-  font-weight: bold;
-}
-
-.completed-button:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-}
-
 .return-button {
   padding: 12px 8px;
   font-size: 0.9em;
