@@ -98,7 +98,7 @@ export class DeliveriesComponent implements OnInit {
     });
   }
 
-  onDecline(delivery: Delivery): void {
+  onDelete(delivery: Delivery): void {
     this.baseService.deleteDelivery(delivery.id).subscribe({
       next: () => {
         console.log('Delivery eliminado:', delivery);
