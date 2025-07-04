@@ -9,16 +9,15 @@ import {Device} from '../../model/device.model';
 import {BaseSensorService} from '../../../../shared/services/base.sensor.service';
 
 @Component({
-  selector: 'app-delivery-details',
-  standalone: true,
-  imports: [
-    MatCard,
-    NgIf,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  templateUrl: './delivery-details.component.html',
-  styleUrl: './delivery-details.component.css'
+    selector: 'app-delivery-details',
+    imports: [
+        MatCard,
+        NgIf,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    templateUrl: './delivery-details.component.html',
+    styleUrl: './delivery-details.component.css'
 })
 export class DeliveryDetailsComponent implements OnInit {
   delivery: Delivery | null = null

@@ -5,11 +5,10 @@ import {Router} from '@angular/router';
 import {BaseService} from '../../../shared/services/base.service';
 
 @Component({
-  selector: 'app-add-incident-page',
-  standalone: true,
-  imports: [CommonModule, FormsModule],
-  templateUrl: './add-incident-page.component.html',
-  styleUrls: ['./add-incident-page.component.css'],
+    selector: 'app-add-incident-page',
+    imports: [CommonModule, FormsModule],
+    templateUrl: './add-incident-page.component.html',
+    styleUrls: ['./add-incident-page.component.css']
 })
 export class AddIncidentPageComponent {
   incident = {

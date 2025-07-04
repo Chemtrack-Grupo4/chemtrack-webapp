@@ -10,19 +10,18 @@ import {FormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 
 @Component({
-  selector: 'app-incidents',
-  standalone: true,
-  imports: [
-    CommonModule,        //  ← soluciona NG8103
-    MatCardModule,       //  ← <mat-card>
-    MatIconModule,       //  ← <mat-icon>
-    MatInputModule,      //  ← matInput
-    MatIconButton,
-    FormsModule,
-    RouterLink
-  ],
-  templateUrl: './incidents.component.html',
-  styleUrls: ['./incidents.component.css'],
+    selector: 'app-incidents',
+    imports: [
+        CommonModule, //  ← soluciona NG8103
+        MatCardModule, //  ← <mat-card>
+        MatIconModule, //  ← <mat-icon>
+        MatInputModule, //  ← matInput
+        MatIconButton,
+        FormsModule,
+        RouterLink
+    ],
+    templateUrl: './incidents.component.html',
+    styleUrls: ['./incidents.component.css']
 })
 export class IncidentsComponent implements OnInit {
   incidents: Incident[] = [];

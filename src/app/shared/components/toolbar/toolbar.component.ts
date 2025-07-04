@@ -7,18 +7,17 @@ import { MatButtonModule  } from '@angular/material/button';
 import { MatIconModule    } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-toolbar',
-  standalone: true,
-  imports: [
-    CommonModule,
-    RouterLink,
-    RouterLinkActive,
-    MatToolbarModule,
-    MatButtonModule,
-    MatIconModule,
-  ],
-  templateUrl: './toolbar.component.html',
-  styleUrls: ['./toolbar.component.css'],
+    selector: 'app-toolbar',
+    imports: [
+        CommonModule,
+        RouterLink,
+        RouterLinkActive,
+        MatToolbarModule,
+        MatButtonModule,
+        MatIconModule,
+    ],
+    templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent {
   showLogOutButton: boolean = true;

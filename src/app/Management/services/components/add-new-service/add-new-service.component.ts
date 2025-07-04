@@ -4,14 +4,13 @@ import {Router} from '@angular/router';
 import {BaseService} from '../../../../shared/services/base.service';
 
 @Component({
-  selector: 'app-add-new-service',
-  standalone: true,
+    selector: 'app-add-new-service',
     imports: [
         FormsModule,
         ReactiveFormsModule
     ],
-  templateUrl: './add-new-service.component.html',
-  styleUrl: './add-new-service.component.css'
+    templateUrl: './add-new-service.component.html',
+    styleUrl: './add-new-service.component.css'
 })
 export class AddNewServiceComponent {
   service = {

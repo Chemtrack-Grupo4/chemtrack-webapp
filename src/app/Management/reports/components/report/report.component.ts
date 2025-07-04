@@ -9,16 +9,15 @@ import {Record} from '../../model/record.model';
 import {Delivery} from '../../../deliveries/model/delivery';
 
 @Component({
-  selector: 'app-report',
-  standalone: true,
-  imports: [
-    MatCard,
-    NgIf,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  templateUrl: './report.component.html',
-  styleUrl: './report.component.css'
+    selector: 'app-report',
+    imports: [
+        MatCard,
+        NgIf,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    templateUrl: './report.component.html',
+    styleUrl: './report.component.css'
 })
 export class ReportComponent implements OnInit {
   record: Record | null = null

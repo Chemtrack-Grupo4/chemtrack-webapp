@@ -9,18 +9,17 @@ import { MatDialog } from '@angular/material/dialog';
 import {AddDeliveryPageComponent} from '../add-delivery-dialog/add-delivery-page.component';
 
 @Component({
-  selector: 'app-deliveries',
-  templateUrl: './deliveries.component.html',
-  standalone: true,
-  imports: [
-    NgForOf,
-    NgIf,
-    MatIconButton,
-    ReactiveFormsModule,
-    FormsModule,
-    RouterLink
-  ],
-  styleUrl: './deliveries.component.css'
+    selector: 'app-deliveries',
+    templateUrl: './deliveries.component.html',
+    imports: [
+        NgForOf,
+        NgIf,
+        MatIconButton,
+        ReactiveFormsModule,
+        FormsModule,
+        RouterLink
+    ],
+    styleUrl: './deliveries.component.css'
 })
 export class DeliveriesComponent implements OnInit {
   deliveries: Delivery[] = [];

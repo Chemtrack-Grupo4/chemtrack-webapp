@@ -5,11 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {BaseService} from '../../../../shared/services/base.service';
 
 @Component({
-  selector: 'app-add-delivery-page',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
-  templateUrl: './add-delivery-page.component.html',
-  styleUrls: ['./add-delivery-page.component.css'],
+    selector: 'app-add-delivery-page',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule],
+    templateUrl: './add-delivery-page.component.html',
+    styleUrls: ['./add-delivery-page.component.css']
 })
 export class AddDeliveryPageComponent {
   delivery = {

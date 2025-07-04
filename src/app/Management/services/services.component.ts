@@ -9,20 +9,19 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-services',
-  templateUrl: './services.component.html',
-  standalone: true,
-  imports: [
-    MatCard,
-    NgClass,
-    NgForOf,
-    NgIf,
-    MatIconButton,
-    MatInput,
-    ReactiveFormsModule,
-    FormsModule
-  ],
-  styleUrl: './services.component.css'
+    selector: 'app-services',
+    templateUrl: './services.component.html',
+    imports: [
+        MatCard,
+        NgClass,
+        NgForOf,
+        NgIf,
+        MatIconButton,
+        MatInput,
+        ReactiveFormsModule,
+        FormsModule
+    ],
+    styleUrl: './services.component.css'
 })
 export class ServicesComponent implements OnInit {
   services: Services[] = [];
