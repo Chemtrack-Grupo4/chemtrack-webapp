@@ -28,6 +28,7 @@ export class ToolbarComponent {
   showLogOutButton = true;
   showMenuIcon     = window.innerWidth <= 600;
   isMenuOpen       = false;
+  userRole: string | null = null;
 
   /* ---- notificaciones ---- */
   showNotifications = false;
@@ -35,7 +36,11 @@ export class ToolbarComponent {
 
   constructor(private router: Router,
               private baseService: BaseService) {
-
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user = JSON.parse(userString);
+      this.userRole = user.role;
+    }
     this.router.events.subscribe(() => {
       const current = this.router.url;
       this.showLogOutButton = !(current === '/login' || current === '/signup');

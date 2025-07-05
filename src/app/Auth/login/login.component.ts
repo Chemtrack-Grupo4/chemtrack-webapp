@@ -23,7 +23,7 @@ export class LoginComponent {
     this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: (user: User) => {
         localStorage.setItem('user', JSON.stringify(user));
-        this.router.navigate(['/services']);
+        this.router.navigate(['/deliveries']);
       },
       error: () => {
         this.error = 'Invalid credentials';

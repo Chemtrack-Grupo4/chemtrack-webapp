@@ -7,8 +7,8 @@ export class Delivery {
   route: string;
   stop: string;
   combustibleType: string;
-  employeeId: string;
-  ownerId: string;
+  employeeId: number;
+  ownerId: number;
   state: string;
 
   constructor() {
@@ -19,8 +19,8 @@ export class Delivery {
     this.route = '';
     this.stop = '';
     this.combustibleType = '';
-    this.employeeId = '';
-    this.ownerId = '';
+    this.employeeId = 0;
+    this.ownerId = 0;
     this.state = '';
   }
 

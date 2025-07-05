@@ -25,8 +25,8 @@ export class DeliveriesComponent implements OnInit {
   deliveries: Delivery[] = [];
   filteredDeliveries: Delivery[] = [];
   searchText: string = '';
-  //Variable para almacenar el rol del usuario
-  //userRole: string | null = null;
+  userRole: string | null = null;
+  userId: number = 0;
 
   constructor(
     private baseService: BaseService,
@@ -34,41 +34,51 @@ export class DeliveriesComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
+  // En caso de contar con el rol del usuario en el local storage, se puede filtrar por estado o usuario dependiendo del rol.
   ngOnInit(): void {
-    this.loadDeliveries();
+    const userString = localStorage.getItem('user');
+    if (userString) {
+      const user = JSON.parse(userString);
+      const role = user.role;
+      const userId = user.id;
+      this.userId = user.id;
+      this.userRole = user.role;
+
+      if (role === 'COMPANY' && userId) {
+        this.loadDeliveriesByOwnerId(userId);
+      } else if (role === 'EMPLOYEE') {
+        this.loadDeliveries(userId);
+      }
+    }
   }
 
-  // En caso de contar con el rol del usuario en el local storage, se puede filtrar por estado o usuario dependiendo del rol.
-  /*ngOnInit(): void {
-    this.userRole = localStorage.getItem('role');
-    const role = localStorage.getItem('role');
-    const ownerId = localStorage.getItem('userId');
-
-    if (role === 'COMPANY' && userId) {
-      this.loadDeliveriesByUserId(userId);
-    } else if (role === 'EMPLOYEE') {
-      this.loadDeliveries();
-    }
-  }*/
-
   // Metodo para cargar entregas por ID de usuario en caso de que el usuario sea una empresa.
-  /*loadDeliveriesByUserId(userId: string): void {
-    this.baseService.getDeliveriesByUserId(userId).subscribe(
+  loadDeliveriesByOwnerId(ownerId: number): void {
+    this.baseService.getDeliveries().subscribe(
       (data: Delivery[]) => {
-        this.deliveries = data;
-        this.filteredDeliveries = data;
+        // Filtra los deliveries por ownerId
+        this.deliveries = data.filter(delivery => delivery.ownerId == ownerId);
+        this.filteredDeliveries = this.deliveries;
       },
       (error) => {
         console.error('Error loading deliveries by userId:', error);
       }
     );
-  }  */
+  }
 
-  loadDeliveries(): void {
+  loadDeliveries(employeeId: number): void {
     this.baseService.getDeliveries().subscribe(
       (data: Delivery[]) => {
-        this.deliveries = data;
-        this.filteredDeliveries = data;
+        this.deliveries = Array.isArray(data)
+          ? data.filter(delivery =>
+            delivery.state === 'PENDING' ||
+            (
+              delivery.employeeId === employeeId &&
+              (delivery.state === 'IN_PROGRESS' || delivery.state === 'COMPLETED')
+            )
+          )
+          : [];
+        this.filteredDeliveries = this.deliveries;
       },
       (error) => {
         console.error('Error loading deliveries:', error);
@@ -86,11 +96,11 @@ export class DeliveriesComponent implements OnInit {
     this.router.navigate(['/delivery-report', delivery.id]);
   }
 
-  onAccept(delivery: Delivery): void {
-    this.baseService.updateDeliveryStateInProgress(delivery.id, 1).subscribe({
+  onAccept(delivery: Delivery, userId: number): void {
+    this.baseService.updateDeliveryStateInProgress(delivery.id, userId).subscribe({
       next: () => {
         console.log('Delivery aceptado:', delivery);
-        this.loadDeliveries(); // Recargar la lista de deliveries
+        this.loadDeliveries(userId); // Recargar la lista de deliveries
       },
       error: (err) => {
         console.error('Error al aceptar el delivery:', err);
@@ -98,11 +108,11 @@ export class DeliveriesComponent implements OnInit {
     });
   }
 
-  onDelete(delivery: Delivery): void {
+  onDelete(delivery: Delivery, userId: number): void {
     this.baseService.deleteDelivery(delivery.id).subscribe({
       next: () => {
         console.log('Delivery eliminado:', delivery);
-        this.loadDeliveries(); // Recargar la lista de deliveries
+        this.loadDeliveries(userId); // Recargar la lista de deliveries
       },
       error: (err) => {
         console.error('Error al eliminar el delivery:', err);
