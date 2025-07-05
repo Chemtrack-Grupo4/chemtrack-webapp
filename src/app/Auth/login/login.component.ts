@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
-import {AuthService} from '../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
   selector: 'app-login',
@@ -20,12 +21,15 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login({ username: this.username, password: this.password }).subscribe({
-      next: (user) => {
+      next: (user: User) => {
+        // Esto debería ejecutarse si el backend devuelve el UserDTO
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/services']);
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Invalid credentials';
       }
     });
   }
+
 }
