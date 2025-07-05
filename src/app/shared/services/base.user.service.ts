@@ -13,7 +13,7 @@ import {User} from '../../Profiles/model/users';
 })
 
 export class BaseUserService {
-  private apiUrl = 'http://localhost:8080/api/v1';
+  private apiUrl = 'https://chemtrack-backend-production.up.railway.app/api/safe-flow/v1/';
 
   constructor(private http: HttpClient) {}
 

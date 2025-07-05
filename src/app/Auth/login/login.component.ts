@@ -1,14 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import {Router, RouterLink} from '@angular/router';
-import {AuthService} from '../services/auth.service';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { User } from '../model/user';
 
 @Component({
-    selector: 'app-login',
-    imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  standalone: true,
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterLink],
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent {
   username = '';
@@ -19,10 +21,11 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login({ username: this.username, password: this.password }).subscribe({
-      next: (user) => {
+      next: (user: User) => {
+        localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/services']);
       },
-      error: (err) => {
+      error: () => {
         this.error = 'Invalid credentials';
       }
     });

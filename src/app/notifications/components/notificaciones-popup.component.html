@@ -1,0 +1,28 @@
+<div class="notifications-popup-green animate-in">
+  <div class="notif-popup-header">
+    <mat-icon class="notif-bell-green">notifications</mat-icon>
+    Notifications
+    <button mat-icon-button class="notif-close-btn" (click)="closePopup()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+
+  <!-- LISTA SCROLL -->
+  <div class="notif-toast-list-green">
+    <div class="notif-toast-green" *ngFor="let n of notifications">
+      <mat-icon class="notif-alert-green">error_outline</mat-icon>
+
+      <div class="notif-info-green">
+        <div class="notif-place-green">{{ n.incidentPlace }}</div>
+        <div class="notif-desc-green">
+          {{ n.description | slice:0:75 }}{{ n.description.length > 75 ? '…' : '' }}
+        </div>
+      </div>
+
+      <div class="notif-right-green">
+        <span class="notif-date-badge-green">{{ n.date }}</span>
+        <button mat-stroked-button class="notif-btn-green" (click)="closePopup()">Ok</button>
+      </div>
+    </div>
+  </div>
+</div>

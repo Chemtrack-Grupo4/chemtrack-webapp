@@ -1,18 +1,39 @@
-<!-- toolbar.component.html -->
 <mat-toolbar color="primary" class="toolbar">
   <span class="logo">
-    <img src="https://i.imgur.com/oiYhULk.png" alt="Logo" class="app-logo" />
+    <img src="https://i.imgur.com/oiYhULk.png" alt="Logo" class="app-logo"/>
     Chemtrack
   </span>
+
   <span class="spacer"></span>
-  <i *ngIf="showMenuIcon" class="menu-icon fa-solid fa-bars" style="color: #ffffff;" (click)="toggleMenu()"></i>
+
+  <i *ngIf="showMenuIcon"
+     class="menu-icon fa-solid fa-bars"
+     style="color:#fff;"
+     (click)="toggleMenu()"></i>
+
   <nav *ngIf="!showMenuIcon || isMenuOpen">
-<!--    <a mat-button routerLink="/services" routerLinkActive="active-link">Services</a>-->
     <a mat-button routerLink="/deliveries" routerLinkActive="active-link">Deliveries</a>
-    <a mat-button routerLink="/incidents" routerLinkActive="active-link">Incidents</a>
-    <a mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>
-<!--    Descomentar la siguiente línea si se quiere mostrar el botón de empleados para usuarios de tipo COMPANY-->
-<!--    <a *ngIf="userRole === 'COMPANY'" mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>-->
-    <a *ngIf="showLogOutButton" mat-button class="log-out" routerLinkActive="active-link" (click)="logOut()">Log Out</a>
+    <a mat-button routerLink="/incidents"  routerLinkActive="active-link">Incidents</a>
+    <a mat-button routerLink="/employees"  routerLinkActive="active-link">Employees</a>
+    <a mat-button routerLink="sensors/create" routerLinkActive="active-link">Sensor</a>
+
+    <a *ngIf="showLogOutButton"
+       mat-button
+       class="log-out"
+       (click)="logOut()">Log Out</a>
   </nav>
+
+  <!-- campana -->
+  <button mat-icon-button class="toolbar-bell" (click)="onBellClick()">
+    <mat-icon>notifications</mat-icon>
+    <span *ngIf="notifications.length"
+          class="bell-badge">{{ notifications.length }}</span>
+  </button>
 </mat-toolbar>
+
+<!-- Popup (hijo) -->
+<app-notificaciones-popup
+  *ngIf="showNotifications"
+  [notifications]="notifications"
+  (close)="showNotifications = false">
+</app-notificaciones-popup>

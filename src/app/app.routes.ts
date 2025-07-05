@@ -12,11 +12,14 @@ import {
 import {AddIncidentPageComponent} from './Incidents/components/add-new-incident/add-incident-page.component';
 import {AddNewServiceComponent} from './Management/services/components/add-new-service/add-new-service.component';
 import {ReportComponent} from './Management/reports/components/report/report.component';
+import {SensorCreateComponent} from './Sensor/pages/create-page-sensor/sensor-create.component';
 
 export const routes: Routes = [
   { path: 'services', component: ServicesComponent },
   { path: 'incidents', component: IncidentsComponent },
   { path: 'employees', component: ComponentsComponent },
+  { path: 'sensors/create', component: SensorCreateComponent },
+
   { path: 'deliveries', component: DeliveriesComponent },
   { path: 'delivery-details/:id', component: DeliveryDetailsComponent },
   { path: 'delivery-report/:id', component: ReportComponent },

@@ -74,3 +74,66 @@ nav a {
     margin-bottom: 10px;
   }
 }
+.toolbar-bell {
+  position: relative;
+  margin-left: 16px;
+}
+.bell-badge {
+  background: #d4f365;
+  color: #364217;
+  font-size: 0.95em;
+  border-radius: 50%;
+  padding: 3px 7px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px #0002;
+  z-index: 10;
+}
+
+.notifications-popup-green {
+  position: absolute;
+  top: 60px;
+  right: 38px;
+  width: 395px;
+  max-width: 95vw;
+  background: #283019;
+  border-radius: 20px;
+  box-shadow: 0 6px 32px #0005;
+  z-index: 1600;
+  padding: 0 0 18px 0;
+  animation: slideDownNotif 0.28s cubic-bezier(0.52, 1.28, 0.29, 1) both;
+  border: 2px solid #d4f36533;
+}
+@keyframes slideDownNotif {
+  from { transform: translateY(-30px) scale(0.98); opacity: 0; }
+  to   { transform: translateY(0) scale(1); opacity: 1; }
+}
+.notif-popup-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px 8px 16px;
+  font-size: 1.18em;
+  font-weight: bold;
+  color: #d4f365;
+  border-bottom: 1.5px solid #364217;
+  position: relative;
+  border-radius: 18px 18px 0 0;
+}
+.notif-bell-green {
+  color: #d4f365;
+  font-size: 24px !important;
+}
+.notif-close-btn {
+  position: absolute !important;
+  right: 8px;
+  top: 8px;
+  color: #fff !important;
+  background: #45521d !important;
+  border-radius: 6px !important;
+  width: 32px !important;
+  height: 32px !important;
+  box-shadow: none !important;
+}

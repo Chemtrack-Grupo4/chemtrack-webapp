@@ -12,7 +12,7 @@ import {Sensor} from '../../Management/monitoring/model/monitoring';
 })
 
 export class BaseService {
-  private apiUrl = 'http://localhost:8080/api/safe-flow/v1';
+  private apiUrl = 'https://chemtrack-backend-production.up.railway.app/api/safe-flow/v1';
 
   constructor(private http: HttpClient) {}
 
@@ -105,6 +105,13 @@ export class BaseService {
 
   createDelivery(data: any): Observable<Delivery> {
     return this.http.post<Delivery>(`${this.apiUrl}/deliveries`, data, this.httpOptions);
+  }
+
+  getLatestRecordByDeliveryId(deliveryId: string): Observable<any> {
+    return this.http.get<any>(`https://chemtrack-backend-production.up.railway.app/api/safeflow/v1/records/delivery/${deliveryId}/latest`);
+  }
+  getRecordsByDeliveryId(deliveryId: string): Observable<any[]> {
+    return this.http.get<any[]>(`https://chemtrack-backend-production.up.railway.app/records/delivery/${deliveryId}`);
   }
 
   deleteDelivery(id: number): Observable<void> {

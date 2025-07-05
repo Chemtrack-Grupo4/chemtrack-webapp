@@ -1,51 +1,92 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {Router, RouterLink, RouterLinkActive} from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule  } from '@angular/material/button';
 import { MatIconModule    } from '@angular/material/icon';
 
+import { BaseService }     from '../../services/base.service';
+import {NotificacionesPopupComponent} from '../../../notifications/components/notificaciones-popup.component';
+
 @Component({
-    selector: 'app-toolbar',
-    imports: [
-        CommonModule,
-        RouterLink,
-        RouterLinkActive,
-        MatToolbarModule,
-        MatButtonModule,
-        MatIconModule,
-    ],
-    templateUrl: './toolbar.component.html',
-    styleUrls: ['./toolbar.component.css']
+  selector: 'app-toolbar',
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterLink,
+    RouterLinkActive,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    NotificacionesPopupComponent          // <-- importa el popup stand-alone
+  ],
+  templateUrl: './toolbar.component.html',
+  styleUrls: ['./toolbar.component.css']
 })
 export class ToolbarComponent {
-  showLogOutButton: boolean = true;
-  showMenuIcon: boolean = window.innerWidth <= 600;
-  isMenuOpen: boolean = false;
-  // Variable para almacenar el rol del usuario
-  //userRole: string | null = null;
+  showLogOutButton = true;
+  showMenuIcon     = window.innerWidth <= 600;
+  isMenuOpen       = false;
 
-  constructor(private router: Router) {
-    // Inicializa el rol del usuario desde localStorage
-    //this.userRole = localStorage.getItem('role'); // Obtiene el rol del usuario desde localStorage
+  /* ---- notificaciones ---- */
+  showNotifications = false;
+  notifications: any[] = [];
+
+  constructor(private router: Router,
+              private baseService: BaseService) {
 
     this.router.events.subscribe(() => {
-      const currentRoute = this.router.url;
-      this.showLogOutButton = !(currentRoute === '/login' || currentRoute === '/signup');
+      const current = this.router.url;
+      this.showLogOutButton = !(current === '/login' || current === '/signup');
     });
   }
 
-  toggleMenu(): void {
-    this.isMenuOpen = !this.isMenuOpen;
+  toggleMenu() { this.isMenuOpen = !this.isMenuOpen; }
+
+  @HostListener('window:resize')
+  onResize() { this.showMenuIcon = window.innerWidth <= 600; }
+
+  logOut()   { this.router.navigate(['/login']); }
+
+  /* ------------ campana ------------ */
+  onBellClick(): void {
+    if (this.showNotifications) {
+      this.showNotifications = false;
+      return;
+    }
+
+    this.baseService.getIncidents().subscribe((data: any[]) => {
+      this.notifications = data
+        .sort((a, b) => {
+          const at = Array.isArray(a.date) ? new Date(a.date[0], a.date[1]-1, a.date[2]).getTime()
+            : new Date(a.date).getTime();
+          const bt = Array.isArray(b.date) ? new Date(b.date[0], b.date[1]-1, b.date[2]).getTime()
+            : new Date(b.date).getTime();
+          return bt - at;
+        })
+        .slice(0, 6)
+        .map((inc) => {
+          if (Array.isArray(inc.date)) {
+            const [y, m, d] = inc.date;
+            inc.date = `${y}/${m}/${d}`;
+          }
+          return inc;
+        });
+
+      this.showNotifications = true;
+    });
   }
 
-  @HostListener('window:resize', ['$event'])
-  onResize(): void {
-    this.showMenuIcon = window.innerWidth <= 600; // Actualiza el estado al redimensionar
-  }
-
-  logOut(): void {
-    this.router.navigate(['/login']);
+  /* cierra popup si click fuera */
+  @HostListener('document:mousedown', ['$event'])
+  clickAway(e: MouseEvent) {
+    const pop = document.querySelector('.notifications-popup-green');
+    const bell = document.querySelector('.toolbar-bell');
+    if (this.showNotifications &&
+      pop  && !pop.contains(e.target as Node) &&
+      bell && !bell.contains(e.target as Node)) {
+      this.showNotifications = false;
+    }
   }
 }

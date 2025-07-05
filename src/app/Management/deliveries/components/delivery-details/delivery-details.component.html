@@ -9,14 +9,13 @@
     />
   </div>
 
-  <div class="delivery-details-card-container">
+  <div class="delivery-details-grid">
+    <!-- Card 1: Detalles de la entrega -->
     <mat-card class="delivery-details-card" *ngIf="delivery">
-
       <div class="delivery-details-header">
         <h3>{{ delivery.destination }}</h3>
         <p>{{ delivery.packageDescription }}</p>
       </div>
-
       <div class="delivery-details-body">
         <div class="delivery-details-body-subtitle">
           <p>Route Details</p>
@@ -31,17 +30,72 @@
         <p>{{ delivery.combustibleType }}</p>
       </div>
     </mat-card>
-    <mat-card class="delivery-details-card" *ngIf="device">
 
+    <!-- Card 2: Sensor + Último Record + Tabla de records -->
+    <mat-card class="delivery-details-card" *ngIf="device || latestRecord">
       <div class="delivery-details-header">
         <h3>Sensor</h3>
-        <p>Id: {{ device.id }}</p>
-        <p>Safe: {{ device.safe }}</p>
+        <p *ngIf="device">Id: {{ device.id }}</p>
+        <p *ngIf="device">
+          Safe:
+          <span [ngClass]="device.safe ? 'safe-badge' : 'unsafe-badge'">
+            {{ device.safe ? 'Safe' : 'Unsafe' }}
+          </span>
+        </p>
+        <h3 style="margin-top: 22px;">Último Record</h3>
+        <ng-container *ngIf="latestRecord">
+          <p>Gas: {{ latestRecord.gasValue }}</p>
+          <p>Ritmo cardiaco: {{ latestRecord.heartRateValue }}</p>
+          <p>Temperatura: {{ latestRecord.temperatureValue }} °C</p>
+          <p>
+            Fecha:
+            {{ latestRecord.timestamp[2] }}/{{ latestRecord.timestamp[1] }}/{{ latestRecord.timestamp[0] }}
+            {{ latestRecord.timestamp[3] }}:{{ latestRecord.timestamp[4] }}
+          </p>
+        </ng-container>
+      </div>
+
+      <!-- Tabla de últimos records -->
+      <div *ngIf="records && records.length > 0" class="records-table-container">
+        <h4>Historial de registros recientes</h4>
+        <table class="records-table">
+          <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Gas</th>
+            <th>Temp (°C)</th>
+            <th>BPM</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let r of records.slice(-5)">
+            <td>
+              {{ r.timestamp[2] }}/{{ r.timestamp[1] }}/{{ r.timestamp[0] }}
+              {{ r.timestamp[3] }}:{{ r.timestamp[4] }}
+            </td>
+            <td>{{ r.gasValue }}</td>
+            <td>{{ r.temperatureValue }}</td>
+            <td>{{ r.heartRateValue }}</td>
+          </tr>
+          </tbody>
+        </table>
       </div>
     </mat-card>
-    <div class="buttons">
-      <button class="completed-button" (click)="markAsCompleted()">Mark as Completed</button>
-      <button class="return-button" (click)="returnToDeliveries()">Return Home</button>
-    </div>
+  </div>
+
+  <!-- Mapa centrado y ancho -->
+  <div class="delivery-details-map-container" *ngIf="latestRecord?.latitude && latestRecord?.longitude">
+    <iframe
+      [src]="getMapUrl(latestRecord.latitude, latestRecord.longitude)"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="big-map-iframe"
+    ></iframe>
+  </div>
+
+  <div class="buttons">
+    <button class="completed-button" (click)="markAsCompleted()">Mark as Completed</button>
+    <button class="return-button" (click)="returnToDeliveries()">Return Home</button>
   </div>
 </div>
