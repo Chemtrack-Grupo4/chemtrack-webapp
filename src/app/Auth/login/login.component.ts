@@ -22,7 +22,6 @@ export class LoginComponent {
   onLogin() {
     this.authService.login({ username: this.username, password: this.password }).subscribe({
       next: (user: User) => {
-        // Esto debería ejecutarse si el backend devuelve el UserDTO
         localStorage.setItem('user', JSON.stringify(user));
         this.router.navigate(['/services']);
       },
@@ -31,5 +30,4 @@ export class LoginComponent {
       }
     });
   }
-
 }

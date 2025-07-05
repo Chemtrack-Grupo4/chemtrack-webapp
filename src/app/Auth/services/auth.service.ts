@@ -12,12 +12,12 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   login(req: LoginRequest): Observable<User> {
-    // Cambiado a /signin para coincidir con tu backend Spring
+    console.log('[LOGIN] Enviando al backend:', req);
     return this.http.post<User>(`${this.API_URL}/signin`, req);
   }
 
   signup(req: SignupRequest): Observable<User> {
-    // Cambiado a /signup
+    console.log('[SIGNUP] Enviando al backend:', req);
     return this.http.post<User>(`${this.API_URL}/signup`, req);
   }
 }
