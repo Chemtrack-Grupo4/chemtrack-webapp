@@ -14,7 +14,7 @@
   <nav *ngIf="!showMenuIcon || isMenuOpen">
     <a mat-button routerLink="/deliveries" routerLinkActive="active-link">Deliveries</a>
     <a mat-button routerLink="/incidents"  routerLinkActive="active-link">Incidents</a>
-    <a mat-button routerLink="/employees"  routerLinkActive="active-link">Employees</a>
+    <a *ngIf="userRole === 'COMPANY'" mat-button routerLink="/employees" routerLinkActive="active-link">Employees</a>
     <a mat-button routerLink="sensors/create" routerLinkActive="active-link">Sensor</a>
 
     <a *ngIf="showLogOutButton"
