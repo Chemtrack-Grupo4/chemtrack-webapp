@@ -118,4 +118,7 @@ export class BaseService {
     return this.http.delete<void>(`${this.apiUrl}/deliveries/${id}`);
   }
 
+  getEmployeesByUserId(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`https://chemtrack-backend-production.up.railway.app/api/safeflow/v1/employees/user/${userId}`);
+  }
 }

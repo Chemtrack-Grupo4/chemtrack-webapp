@@ -32,7 +32,7 @@
           <button class="report-button" *ngIf="delivery.state === 'COMPLETED'" (click)="onReport(delivery)">Report</button>
 <!--          <button class="delete-button" (click)="onDelete(delivery)">Delete</button>-->
 <!--          Descomentar la siguiente línea si se desea mostrar el botones según el tipo de usuario-->
-          <button class="accept-button" *ngIf="delivery.state === 'PENDING' && userRole !== 'COMPANY'" (click)="onAccept(delivery, userId)">Accept</button>
+          <button class="accept-button" *ngIf="delivery.state === 'PENDING' && userRole !== 'COMPANY'" (click)="onAccept(delivery)">Accept</button>
           <button class="delete-button" *ngIf="delivery.state === 'PENDING' && userRole !== 'EMPLOYEE'" (click)="onDelete(delivery, userId)">Delete</button>
         </div>
       </div>

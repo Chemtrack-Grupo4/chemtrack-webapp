@@ -1,25 +1,25 @@
 import { Component, OnInit } from '@angular/core';
 import { Delivery } from '../../model/delivery';
 import { BaseService } from '../../../../shared/services/base.service';
-import {Router, RouterLink} from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { NgForOf, NgIf } from '@angular/common';
 import { MatIconButton } from '@angular/material/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import {AddDeliveryPageComponent} from '../add-delivery-dialog/add-delivery-page.component';
+import { AddDeliveryPageComponent } from '../add-delivery-dialog/add-delivery-page.component';
 
 @Component({
-    selector: 'app-deliveries',
-    templateUrl: './deliveries.component.html',
-    imports: [
-        NgForOf,
-        NgIf,
-        MatIconButton,
-        ReactiveFormsModule,
-        FormsModule,
-        RouterLink
-    ],
-    styleUrl: './deliveries.component.css'
+  selector: 'app-deliveries',
+  templateUrl: './deliveries.component.html',
+  imports: [
+    NgForOf,
+    NgIf,
+    MatIconButton,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterLink
+  ],
+  styleUrl: './deliveries.component.css'
 })
 export class DeliveriesComponent implements OnInit {
   deliveries: Delivery[] = [];
@@ -34,7 +34,6 @@ export class DeliveriesComponent implements OnInit {
     private dialog: MatDialog
   ) {}
 
-  // En caso de contar con el rol del usuario en el local storage, se puede filtrar por estado o usuario dependiendo del rol.
   ngOnInit(): void {
     const userString = localStorage.getItem('user');
     if (userString) {
@@ -52,11 +51,9 @@ export class DeliveriesComponent implements OnInit {
     }
   }
 
-  // Metodo para cargar entregas por ID de usuario en caso de que el usuario sea una empresa.
   loadDeliveriesByOwnerId(ownerId: number): void {
     this.baseService.getDeliveries().subscribe(
       (data: Delivery[]) => {
-        // Filtra los deliveries por ownerId
         this.deliveries = data.filter(delivery => delivery.ownerId == ownerId);
         this.filteredDeliveries = this.deliveries;
       },
@@ -96,14 +93,28 @@ export class DeliveriesComponent implements OnInit {
     this.router.navigate(['/delivery-report', delivery.id]);
   }
 
-  onAccept(delivery: Delivery, userId: number): void {
-    this.baseService.updateDeliveryStateInProgress(delivery.id, userId).subscribe({
-      next: () => {
-        console.log('Delivery aceptado:', delivery);
-        this.loadDeliveries(userId); // Recargar la lista de deliveries
+  // ACTUALIZADO: Obtiene el employeeId desde la API y lo usa para aceptar
+  onAccept(delivery: Delivery): void {
+    // Llama al endpoint y usa el id que retorna
+    this.baseService.getEmployeesByUserId(this.userId).subscribe({
+      next: (employees: any[]) => {
+        if (employees && employees.length > 0) {
+          const employeeId = employees[0].id;
+          this.baseService.updateDeliveryStateInProgress(delivery.id, employeeId).subscribe({
+            next: () => {
+              console.log('Delivery aceptado:', delivery);
+              this.loadDeliveries(this.userId); // Recargar la lista
+            },
+            error: (err) => {
+              console.error('Error al aceptar el delivery:', err);
+            }
+          });
+        } else {
+          console.error('No employee found for user id', this.userId);
+        }
       },
       error: (err) => {
-        console.error('Error al aceptar el delivery:', err);
+        console.error('Error fetching employee by userId:', err);
       }
     });
   }
