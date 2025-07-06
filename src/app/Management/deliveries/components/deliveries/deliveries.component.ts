@@ -63,24 +63,41 @@ export class DeliveriesComponent implements OnInit {
     );
   }
 
-  loadDeliveries(employeeId: number): void {
-    this.baseService.getDeliveries().subscribe(
-      (data: Delivery[]) => {
-        this.deliveries = Array.isArray(data)
-          ? data.filter(delivery =>
-            delivery.state === 'PENDING' ||
-            (
-              delivery.employeeId === employeeId &&
-              (delivery.state === 'IN_PROGRESS' || delivery.state === 'COMPLETED')
-            )
-          )
-          : [];
-        this.filteredDeliveries = this.deliveries;
+  // ACTUALIZADO: Consigue employeeId real y filtra con ese ID
+  loadDeliveries(userId: number): void {
+    this.baseService.getEmployeesByUserId(userId).subscribe({
+      next: (employees: any[]) => {
+        if (employees && employees.length > 0) {
+          const employeeId = employees[0].id;
+          this.baseService.getDeliveries().subscribe(
+            (data: Delivery[]) => {
+              this.deliveries = Array.isArray(data)
+                ? data.filter(delivery =>
+                  delivery.state === 'PENDING' ||
+                  (
+                    delivery.employeeId === employeeId &&
+                    (delivery.state === 'IN_PROGRESS' || delivery.state === 'COMPLETED')
+                  )
+                )
+                : [];
+              this.filteredDeliveries = this.deliveries;
+            },
+            (error) => {
+              console.error('Error loading deliveries:', error);
+            }
+          );
+        } else {
+          this.deliveries = [];
+          this.filteredDeliveries = [];
+          console.error('No employee found for user id', userId);
+        }
       },
-      (error) => {
-        console.error('Error loading deliveries:', error);
+      error: (err) => {
+        this.deliveries = [];
+        this.filteredDeliveries = [];
+        console.error('Error fetching employee by userId:', err);
       }
-    );
+    });
   }
 
   onDetails(delivery: Delivery): void {
@@ -95,7 +112,6 @@ export class DeliveriesComponent implements OnInit {
 
   // ACTUALIZADO: Obtiene el employeeId desde la API y lo usa para aceptar
   onAccept(delivery: Delivery): void {
-    // Llama al endpoint y usa el id que retorna
     this.baseService.getEmployeesByUserId(this.userId).subscribe({
       next: (employees: any[]) => {
         if (employees && employees.length > 0) {
