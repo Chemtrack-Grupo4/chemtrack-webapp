@@ -9,7 +9,8 @@
 
   <!-- LISTA SCROLL -->
   <div class="notif-toast-list-green">
-    <div class="notif-toast-green" *ngFor="let n of notifications">
+    <!-- SOLO LOS 6 ÚLTIMOS -->
+    <div class="notif-toast-green" *ngFor="let n of notifications.slice(-6)">
       <i class="fa-solid fa-circle-exclamation" style="color: #ffffff;"></i>
 
       <div class="notif-info-green">
